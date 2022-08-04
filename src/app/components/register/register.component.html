@@ -1,36 +1,209 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
+
+<div class="registerbox" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card id="registerBox" class="box">
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
+  
+    <h3>Select Your type of use</h3>
+    
+    <mat-button-toggle-group  name="UserType" aria-label="User Type" #type="matButtonToggleGroup" [value]="selected" (change)="onChangeToggle(type.value)">
+      <mat-button-toggle id="Companybtn" (click)="toggleVisibilityCompany()"  value="Company"   ClickStopPropagation >Company</mat-button-toggle >
+       <mat-button-toggle id="Candidatebtn" (click)="toggleVisibilityCandidate()"  value="Candidate">Candidate</mat-button-toggle>
+
+
+    </mat-button-toggle-group>
+    
 
     <form class="example-form">
-
+  
       <mat-card-content>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
-        </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email">
-        </mat-form-field>
+        
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
-        </mat-form-field>
+          <mat-form-field *ngIf="always">
+          
+            <input id="userNameInput" matInput placeholder="User Name" formControlName="username">
+            <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+               with the .touched check we only display the hints if the input was touched by the users -->
+            <mat-error *ngIf="this.registerForm.get('username')?.touched && this.registerForm.get('username')?.hasError('required')">
+              UserName is required</mat-error>
+        
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Choose a role...</mat-label>
+
+
+        <mat-form-field *ngIf="always">
+          
+          <input id="emailInput" type="email" matInput placeholder="Email" formControlName="email">
+          <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+             with the .touched check we only display the hints if the input was touched by the users -->
+          <mat-error id="requiredEmail" *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('required')">
+            Email is required</mat-error>
+          <mat-error id="validEmail" *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('email')">
+            Email must be a valid Email</mat-error>
+      
+          </mat-form-field>
+
+
+          <mat-form-field *ngIf="always">
+            <input id="rPasswordInput" type="password" matInput placeholder="Password" formControlName="password">
+            <mat-error id="requiredpass"
+              *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('required')">
+              Password is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="always">
+            <input type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
+            <mat-error id="requiredpassConf"
+              *ngIf="this.registerForm.get('passwordConfirm')?.touched && this.registerForm.get('passwordConfirm')?.hasError('required')">
+              Password Confirmation is required</mat-error>
+            </mat-form-field>
+            
+              <mat-error id="passNotMatch"
+              *ngIf="this.registerForm.get('passwordConfirm')?.dirty && this.registerForm.hasError('passwordsNotMatching')">
+               Password does not match
+             </mat-error>
+            
+  
+        <mat-form-field  *ngIf="candidate" class="example-full-width"  fxFill>
+          <mat-label id="cityBtn">City...</mat-label>
           <mat-select>
-            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            <mat-option id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+      
+        <mat-form-field *ngIf="always" class="example-full-width"  fxFill>
+          <input id="phoneInput" matInput placeholder="phone"> 
+     
+        </mat-form-field>
+  
+      
+      <mat-form-field *ngIf="candidate" class="example-full-width" matInput placeholder="Your speciality"   fxFill>
+        <input id="fieldInput" matInput placeholder="Field">
+      </mat-form-field>
 
-      </mat-card-content>
 
-      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+      <mat-form-field  *ngIf="candidate" class="example-full-width">
+        <input id="intrestInput" matInput placeholder="Add Intrest" #newIntrest 
+        (keyup.enter)="addIntrest(newIntrest.value)"
+        (blur)="addIntrest(newIntrest.value); newIntrest.value='' " fxFill>
+       
+      </mat-form-field>
+  <br>
+      <button id="addIntrestBtn" *ngIf="candidate" type="button" (click)="addIntrest(newIntrest.value)" mat-stroked-button color="accent"  class="btn-block">Add</button>
+  
+      <ul  *ngIf="candidate" ><li id="{{'insertNumber_'+[index_Intrests]}}" *ngFor="let Intrest of Intrests">{{Intrest}}</li></ul>
 
-    </form>
+      <mat-form-field *ngIf="company">
+        <mat-select id="citiesField" placeholder="Cities" [formControl]="Cities" multiple>
+          <mat-option id="{{[choosenCity]}}" *ngFor="let choosenCity of City" [value]="choosenCity">{{choosenCity}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field  *ngIf="company" class="example-full-width">
+        <input id="locationInput" matInput placeholder="Add Location" #newLocation 
+        (keyup.enter)="addLocation(newLocation.value)"
+        (blur)="addLocation(newLocation.value); newLocation.value='' " fxFill>
+      </mat-form-field>
+  <br>
+      <button id="addLocationBtn" *ngIf="company" type="button" (click)="addLocation(newLocation.value)" mat-stroked-button color="accent"  class="btn-block">Add</button>
+  
+      <ul  id="{{[Location]}}" *ngIf="company" ><li id="{{'LocationNumber_'+[indexOfelement]}}" *ngFor="let Location of Locations;let indexOfelement=index;">{{Location}}</li></ul>
+
+      <button  id="deleteLocBtn" *ngIf="company" type="button" (click)="deleteLocation()" mat-stroked-button color="accent"  class="btn-block">Delete The Last Item</button>
+
+ 
+
+      <mat-form-field  id="{{[date]}}"  *ngIf="candidate" class="example-full-width"  fxFill>
+        <input type="date" matInput placeholder="Date of Birth">
+      </mat-form-field>
+  
+      <mat-form-field  *ngIf="candidate" class="example-full-width"  fxFill>
+        <mat-label id="genderLabel" >Gender... </mat-label>
+        <mat-select>
+          <mat-option id="{{[gender]}}"  [value]="gender" *ngFor="let gender of Gender">{{gender}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field *ngIf="candidate" class="example-full-width"  fxFill>
+        <mat-label id="academicLabel" >Academic Degree... </mat-label>
+        <mat-select>
+          <mat-option  id="{{[degree]}}" [value]="degree" *ngFor="let degree of Degree">{{degree}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
+        <input id="faxInput" matInput placeholder="Fax Number"> 
+   
+      </mat-form-field>
+
+      <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
+        <input id="faxInput" matInput placeholder="Tax Number"> 
+   
+      </mat-form-field>
+
+      
+  <mat-form-field appearance="fill" >
+    
+    <textarea  id="candidateDescriptionText" *ngIf="candidate" class="example-full-width" matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5">  Add some information about yourself so companies get to know you easier you can add skills or important internships etc..
+            </textarea>
+
+ 
+    <textarea id="companyDescriptionText"  *ngIf="company" class="example-full-width" matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5">  Add some information About Your Company
+          </textarea>
+  </mat-form-field>
+ 
+  <div  *ngIf="candidate">
+    <h2 id="candidatePictureHeader" >You can add A CV </h2>
+    <button mat-stroked-button color="accent"  class="btn-block">
+    <label  id="choosepicbtnCandidate" >
+    <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+    Upload A File</label>
+  </button>
+ </div>
+   
+    <div  *ngIf="candidate">
+      <h2 id="candidatePictureHeader" >You Can Add A Profile Picture </h2>
+      <button mat-stroked-button color="accent"  class="btn-block">
+      <label  id="choosepicbtnCandidate" >
+      <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+      Choose A Picture</label>
+    </button>
+   </div>
+
+   <div  *ngIf="company">
+    <h2 id="candidatePictureHeader" >You can add Your Logo as A Profile Picture </h2>
+    <button mat-stroked-button color="accent"  class="btn-block">
+    <label  id="choosepicbtnCandidate" >
+    <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+    Choose A Picture</label>
+  </button>
+
+ </div>
+  
+
+</form>
+</mat-card-content>
+  
+  </form>
+  <br>
+    <button mat-raised-button fxFill id="RegisterSubmit" class="submitbtn">Register</button>
   </mat-card>
+
 </div>

@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularFileUploaderModule } from "angular-file-uploader";
+
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +21,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 /* Components */
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ForgotPasswordComponent } from  './components/forgot-password/forgot-password.component';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -27,15 +32,18 @@ import { RegisterComponent } from './components/register/register.component';
     LogInComponent,
     RegisterComponent,
     RegisterComponent,
-    LogInComponent
+    LogInComponent,
+    ForgotPasswordComponent
   ],
   imports: [
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFileUploaderModule,
     FlexLayoutModule
   ],
   providers: [],

@@ -1,0 +1,19 @@
+/*textarea{
+    color: beige;
+    background-color: #790100;
+    font-style: oblique;
+    padding: 5%;
+    animation: backwards;
+    height:80px;
+    transition:all 2s;
+    -webkit-transition:all 2s;
+}
+textarea:focus {
+    height:300px;
+ }*/
+
+ .file-input {
+    display: none;
+  }
+
+ 
