@@ -6,6 +6,7 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import {ErrorStateMatcher} from '@angular/material/core';
 import { CustomValidators } from '../../custom-validators';
 import { HttpClient } from '@angular/common/http';
+
 /*to be used
 import { AngularFileUploaderModule } from "angular-file-uploader";
 
@@ -28,15 +29,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class RegisterComponent implements OnInit {
+  service: any;
+  loc = false;
 
       constructor(private ngZone: NgZone, private http: HttpClient) {
+      }
+      ngOnInit() {
       }
 
       fileName = '';
 
     /***************************switch between candidate and company */
 
-    selected = "Company"
+    selected = "Company";
 
     onChangeToggle(val){
       console.log(val);
@@ -46,6 +51,7 @@ export class RegisterComponent implements OnInit {
     company = true;
     candidate= false;
     always = true;
+   
 
     toggleVisibilityCompany(){
     this.company= true;
@@ -61,6 +67,7 @@ export class RegisterComponent implements OnInit {
       /********************** */
       Intrests = [];
       Locations = [];
+      
       addLocation(newLocation: string) {
         if (newLocation) {
           this.index_Location++;
@@ -68,16 +75,52 @@ export class RegisterComponent implements OnInit {
         
         }
       }
+      
+      public fields: Object = {text: "text", iconCss: "icon" };/** 
+      deleteItem(args) {
+       
+      }
+     
+      ToDelete(id){
+        var checkBox = document.getElementById(id);
+        if (checkBox.onclick == true){
+          const index = this.Locations.indexOf(id, 0);
+            if (index > -1) {
+              this.Locations.splice(index, 1);
+            }
+        
+        }
 
+      }
 
       deleteLocation() {
         
-          this.Locations.pop();
-          this.index_Location--;
+        const btn = document.querySelector('#deleteLocBtn');
+        btn.addEventListener('click', (event) => {
+            let checkboxes = indexOfelement;
+            console.log(checkboxes)
+           
+            /** 
+            checkboxes.forEach((checkbox) => {
+              
+                this.Locations.splice(checkboxes)
+            });
+            
+        });  
     
       }
 
+      */
+       removeCheckedCheckboxes() {
+        var checked = document.querySelectorAll(".delete-checkbox:checked");
+        checked.forEach((elem) => {
+          elem.parentElement.style.display = "none";
+        })
+      }
 
+
+    
+      
       addIntrest(newIntrest: string) {
         if (newIntrest) {
           this.index_Intrests++;
@@ -117,8 +160,7 @@ export class RegisterComponent implements OnInit {
       Validators.email
     ]); 
 
-      ngOnInit() {
-      }
+     
 
       @ViewChild('autosize') autosize: CdkTextareaAutosize;
       triggerResize() {
@@ -137,5 +179,10 @@ export class RegisterComponent implements OnInit {
       console.log(e)
     }
 
-
-}
+    deleteLocations(index){
+      this.Locations.splice(index,1)
+    }
+    deleteIntrest(intrestIndex){
+      this.Intrests.splice(intrestIndex,1)
+    }
+  }

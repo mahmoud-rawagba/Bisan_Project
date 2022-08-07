@@ -1,3 +1,4 @@
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 
@@ -44,7 +45,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     AngularFileUploaderModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],

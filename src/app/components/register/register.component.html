@@ -9,12 +9,10 @@
     <h3>Select Your type of use</h3>
     
     <mat-button-toggle-group  name="UserType" aria-label="User Type" #type="matButtonToggleGroup" [value]="selected" (change)="onChangeToggle(type.value)">
-      <mat-button-toggle id="Companybtn" (click)="toggleVisibilityCompany()"  value="Company"   ClickStopPropagation >Company</mat-button-toggle >
+      <mat-button-toggle id="Companybtn" (click)="toggleVisibilityCompany()"  value="Company">Company</mat-button-toggle >
        <mat-button-toggle id="Candidatebtn" (click)="toggleVisibilityCandidate()"  value="Candidate">Candidate</mat-button-toggle>
 
-
     </mat-button-toggle-group>
-    
 
     <form class="example-form">
   
@@ -91,16 +89,26 @@
         <input id="intrestInput" matInput placeholder="Add Intrest" #newIntrest 
         (keyup.enter)="addIntrest(newIntrest.value)"
         (blur)="addIntrest(newIntrest.value); newIntrest.value='' " fxFill>
-       
+        <br>
+        
       </mat-form-field>
-  <br>
-      <button id="addIntrestBtn" *ngIf="candidate" type="button" (click)="addIntrest(newIntrest.value)" mat-stroked-button color="accent"  class="btn-block">Add</button>
-  
-      <ul  *ngIf="candidate" ><li id="{{'insertNumber_'+[index_Intrests]}}" *ngFor="let Intrest of Intrests">{{Intrest}}</li></ul>
+      <ul  id="{{[Intrest]}}" *ngIf="candidate" ><li id="{{'insertNumber_'+[index_Intrests]}}" *ngFor="let Intrest of Intrests let index_Intrests=index;">{{Intrest}}
+
+        <mat-icon class="example-margin" style=" cursor:pointer;" (click)="deleteIntrest(index_Intrests)">delete_forever</mat-icon>
+      </li></ul>
+        <button mat-stroked-button id="addIntrestBtn" *ngIf="candidate" type="button" (click)="addIntrest(newIntrest.value)"  color="accent"  class="btn-block">Add</button>
+    
+        
+       
+      
+
+
+
 
       <mat-form-field *ngIf="company">
-        <mat-select id="citiesField" placeholder="Cities" [formControl]="Cities" multiple>
-          <mat-option id="{{[choosenCity]}}" *ngFor="let choosenCity of City" [value]="choosenCity">{{choosenCity}}</mat-option>
+        <mat-select id="citiesField" placeholder="Cities" formControlCities="Cities" multiple>
+          <mat-option id="{{[choosenCity]}}" *ngFor="let choosenCity of City" [value]="choosenCity">{{choosenCity}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -111,13 +119,14 @@
         (blur)="addLocation(newLocation.value); newLocation.value='' " fxFill>
       </mat-form-field>
   <br>
-      <button id="addLocationBtn" *ngIf="company" type="button" (click)="addLocation(newLocation.value)" mat-stroked-button color="accent"  class="btn-block">Add</button>
+      <button mat-stroked-button id="addLocationBtn" *ngIf="company" type="button" (click)="addLocation(newLocation.value)"  color="accent"  class="btn-block">Add</button>
   
-      <ul  id="{{[Location]}}" *ngIf="company" ><li id="{{'LocationNumber_'+[indexOfelement]}}" *ngFor="let Location of Locations;let indexOfelement=index;">{{Location}}</li></ul>
-
-      <button  id="deleteLocBtn" *ngIf="company" type="button" (click)="deleteLocation()" mat-stroked-button color="accent"  class="btn-block">Delete The Last Item</button>
-
- 
+      <ul  id="{{[Location]}}" *ngIf="company" ><li id="{{'LocationNumber_'+[indexOfelement]}}" *ngFor="let Location of Locations;let indexOfelement=index;">{{Location}}
+        <!-- <mat-checkbox id="{{[indexOfelement]}}" (change)="showOptions($event)" ></mat-checkbox> -->
+        
+        <mat-icon class="example-margin" style=" cursor:pointer;" (click)="deleteLocations(indexOfelement)">delete_forever</mat-icon>
+          
+      </li></ul>
 
       <mat-form-field  id="{{[date]}}"  *ngIf="candidate" class="example-full-width"  fxFill>
         <input type="date" matInput placeholder="Date of Birth">
@@ -146,7 +155,7 @@
       </mat-form-field>
 
       <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
-        <input id="faxInput" matInput placeholder="Tax Number"> 
+        <input id="taxInput" matInput placeholder="Tax Number"> 
    
       </mat-form-field>
 
@@ -170,10 +179,10 @@
   </mat-form-field>
  
   <div  *ngIf="candidate">
-    <h2 id="candidatePictureHeader" >You can add A CV </h2>
+    <h2 id="candidateCVHeader" >You can add A CV </h2>
     <button mat-stroked-button color="accent"  class="btn-block">
-    <label  id="choosepicbtnCandidate" >
-    <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+    <label  id="choosepicbtnCandidate" fxFill style=" cursor:pointer;">
+    <input #uploadFile id="CV" type='file' style="display: none;" /> 
     Upload A File</label>
   </button>
  </div>
@@ -181,17 +190,17 @@
     <div  *ngIf="candidate">
       <h2 id="candidatePictureHeader" >You Can Add A Profile Picture </h2>
       <button mat-stroked-button color="accent"  class="btn-block">
-      <label  id="choosepicbtnCandidate" >
-      <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+      <label  id="choosepicbtnCandidate" fxFill style=" cursor:pointer;">
+      <input #uploadFile id="candidatePicture" type='file' style="display: none;" /> 
       Choose A Picture</label>
     </button>
    </div>
 
    <div  *ngIf="company">
-    <h2 id="candidatePictureHeader" >You can add Your Logo as A Profile Picture </h2>
-    <button mat-stroked-button color="accent"  class="btn-block">
-    <label  id="choosepicbtnCandidate" >
-    <input #uploadFile id="candidatePicture" type='file' style="display: none;"/> 
+    <h2 id="companyLogoHeader" >You can add Your Logo as A Profile Picture </h2>
+    <button mat-stroked-button color="accent" class="btn-block">
+    <label  id="choosepicbtnCompany" fxFill style=" cursor:pointer;">
+    <input #uploadFile id="companyLogo" type='file' style="display: none;" fxFill/> 
     Choose A Picture</label>
   </button>
 
