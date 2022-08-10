@@ -1,25 +1,14 @@
-import { Component, Directive, HostListener, OnInit } from '@angular/core';
-import {NgZone, ViewChild} from '@angular/core';
-import {take} from 'rxjs/operators';
-import {CdkTextareaAutosize} from '@angular/cdk/text-field';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { CompanyUser } from './../../company-user';
+import { Component,  OnInit } from '@angular/core';
+import {NgZone} from '@angular/core';
+
+import { FormArray, FormControl, FormGroup,  Validators } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field'
+
 import { CustomValidators } from '../../custom-validators';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-/*to be used
-import { AngularFileUploaderModule } from "angular-file-uploader";
-
-*/
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 
 @Component({
@@ -31,27 +20,26 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class RegisterComponent implements OnInit {
   service: any;
   loc = false;
+  fileName = '';
+  selected = "Company";
+  selectedCity: String;
+  company = true;
+  candidate= false;
+  description= '';
+  Intrests = [];
+  Locations = [];
+  City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
+  chosenCities: any = [];
+  Gender: any = ['Male','Female',"Other"];
+  Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
 
-      constructor(private ngZone: NgZone, private http: HttpClient) {
+      constructor(private ngZone: NgZone, private http: HttpClient,
+        private router: Router) {
       }
+
       ngOnInit() {
       }
-
-      fileName = '';
-
     /***************************switch between candidate and company */
-
-    selected = "Company";
-
-    onChangeToggle(val){
-      console.log(val);
-      
-    }
-    /***************************switch between candidate and company */
-    company = true;
-    candidate= false;
-    always = true;
-   
 
     toggleVisibilityCompany(){
     this.company= true;
@@ -61,112 +49,59 @@ export class RegisterComponent implements OnInit {
       this.company= false;
       this.candidate=true;
     }
-    index_Intrests=0;
-    index_Location=0;
 
-      /********************** */
-      Intrests = [];
-      Locations = [];
       
       addLocation(newLocation: string) {
         if (newLocation) {
-          this.index_Location++;
+          
           this.Locations.push(newLocation);
         
         }
       }
-      
-      public fields: Object = {text: "text", iconCss: "icon" };/** 
-      deleteItem(args) {
-       
-      }
-     
-      ToDelete(id){
-        var checkBox = document.getElementById(id);
-        if (checkBox.onclick == true){
-          const index = this.Locations.indexOf(id, 0);
-            if (index > -1) {
-              this.Locations.splice(index, 1);
-            }
-        
+      addCity(newCity: string){
+        if(newCity){
+          this.chosenCities.push(newCity);
         }
-
       }
-
-      deleteLocation() {
-        
-        const btn = document.querySelector('#deleteLocBtn');
-        btn.addEventListener('click', (event) => {
-            let checkboxes = indexOfelement;
-            console.log(checkboxes)
-           
-            /** 
-            checkboxes.forEach((checkbox) => {
-              
-                this.Locations.splice(checkboxes)
-            });
-            
-        });  
-    
-      }
-
-      */
-       removeCheckedCheckboxes() {
-        var checked = document.querySelectorAll(".delete-checkbox:checked");
-        checked.forEach((elem) => {
-          elem.parentElement.style.display = "none";
-        })
-      }
-
-
-    
+      
+      public fields: Object = {text: "text", iconCss: "icon" };
       
       addIntrest(newIntrest: string) {
         if (newIntrest) {
-          this.index_Intrests++;
+          
           this.Intrests.push(newIntrest);
         
         }
       }
 
-
       form: FormGroup = new FormGroup({});
       registerForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
         username: new FormControl(null, [Validators.required]),
-        firstname: new FormControl(null, [Validators.required]),
-        lastname: new FormControl(null, [Validators.required]),
         password: new FormControl(null, [Validators.required]),
         passwordConfirm: new FormControl(null, [Validators.required]),
-        
-      },
+        phone: new FormControl(null),
+    
+       
+        firstname: new FormControl(null, [Validators.required]),
+        lastname: new FormControl(null, [Validators.required]),
+        city: new FormControl(null),
+        intrest: new FormControl(this.Intrests),
+        degree: new FormControl(null),
+        gender: new FormControl(null),
+        canddescription : new FormControl(''),
+  
+    
+        cities: new FormControl(null),
+        location :new FormControl(this.Locations),
+        compdescription: new FormControl(""),
+        fax: new FormControl(null),
+        tax: new FormControl(null),
+    },
       // add custom Validators to the form, to make sure that password and passwordConfirm are equal
-      { validators: CustomValidators.passwordsMatching }
-    )
-      City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
-      chosenCities: any = [];
-      Gender: any = ['Male','Female',"Other"];
-      Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
-      
-      
-      
-    onCommentChange() {
-      console.log(this.commentFC.value);
-    } 
+     {validators: CustomValidators.passwordsMatching }
+     )
 
-    commentFC = new FormControl('', [
-      Validators.required, 
-      Validators.maxLength(30),
-      Validators.email
-    ]); 
-
-     
-
-      @ViewChild('autosize') autosize: CdkTextareaAutosize;
-      triggerResize() {
-        // Wait for changes to be applied, then trigger textarea resize.
-        this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
-      }
       upload(event:Event){
         console.log(event)
     }
@@ -185,4 +120,19 @@ export class RegisterComponent implements OnInit {
     deleteIntrest(intrestIndex){
       this.Intrests.splice(intrestIndex,1)
     }
+      // {username: value}
+    // example {id:1592304983049, title: 'Deadpool', year: 2015}
+  
+    //companyModel = new CompanyUser('','','',0,'',this.Locations,0,0,'')
+    addUser(): void {
+     let x = this.registerForm.value
+    console.log(Object.keys(this.registerForm.value).filter(item => this.registerForm.value[item] !== null && this.registerForm.value[item] !== ''))
+
+this.router.navigate(['jobs']);
+
+    // localStorage.setItem('MyUser', JSON.stringify(this.companyForm.value) );
+     // {{companyModel | json}}
+      //localStorage.setItem('MyUser', JSON.stringify(this.companyModel) );
+    }
   }
+
