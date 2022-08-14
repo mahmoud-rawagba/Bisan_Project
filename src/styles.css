@@ -1,3 +1,4 @@
+
 html,
 body {
   height: 100%;
@@ -12,6 +13,7 @@ body {
   background: #e2e2e2;
   background-image: url("bisan_background.jpg");
   background-repeat: no-repeat;
+ 
 
   background-size:cover; /* Resize the background image to cover the entire container */
   
@@ -145,4 +147,21 @@ mat-form-field {
   background-color:  #790100;
   color:white;
   font-size: large;
+}
+
+.bigbox {
+
+  position: relative;
+  top: 0;
+  opacity: 1;
+  float:left;
+  padding: 60px 50px 40px 50px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  z-index: 5;
+  max-width: 990px;
 }

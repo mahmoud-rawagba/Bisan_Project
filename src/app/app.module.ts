@@ -26,6 +26,8 @@ import { ForgotPasswordComponent } from  './components/forgot-password/forgot-pa
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { JobsComponent } from './components/jobs/jobs.component';
+import { JobDescriptionComponent } from './components/job-description/job-description.component';
+
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { JobsComponent } from './components/jobs/jobs.component';
     RegisterComponent,
     LogInComponent,
     ForgotPasswordComponent,
-    JobsComponent
+    JobsComponent,
+    JobDescriptionComponent,
+    
   ],
   imports: [
     MatInputModule,
@@ -49,7 +53,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
     AngularFileUploaderModule,
     FlexLayoutModule,
     MatCheckboxModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

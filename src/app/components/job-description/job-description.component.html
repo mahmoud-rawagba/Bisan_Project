@@ -1,0 +1,32 @@
+<div class="registerbox" fxLayout="row" fxLayoutAlign="center center" >
+    <div class="container">
+        <mat-card [value]="item.companyName" *ngFor="let item of items" >
+            <mat-card-header>
+             <mat-card-title style=" cursor:pointer;">
+                <br>
+                <br>
+                {{item.companyName}}
+         
+             <br><br>
+             
+
+             
+             </mat-card-title>
+            
+       
+           </mat-card-header>
+           <label >{{ item.jobTitle }}</label>
+           
+           <label style=" font-size:x-large">Description</label>
+           <br><br>
+     
+           <mat-card-content >
+            <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{item.content}} </label>
+           </mat-card-content>
+           <mat-card-actions>
+            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" >Apply Now!</button>
+        </mat-card-actions>
+     
+         </mat-card>
+        </div>
+</div>

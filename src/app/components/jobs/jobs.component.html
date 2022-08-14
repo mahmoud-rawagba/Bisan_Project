@@ -1,22 +1,53 @@
 
-<mat-form >
 
 
-<div class="container">
-    <mat-card *ngFor="let item of items">
+
+
+
+
+
+<mat-form  [formGroup]="filterForm">
+<div class="container" >
+  <header style="background-color: lightgrey;
+  margin-bottom: 1.5%;">
+    <mat-form-field  style="width: 30%;  color:aliceblue;">
+    <mat-label id="citySearch" >Search By City </mat-label>
+    <mat-select formControlName="city" (click)="filter()">
+      <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
+    <mat-label id="genderSearch" >Search By Gender </mat-label>
+    <mat-select formControlName="gender" (click)="filter()">
+      <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  style="width: 30%;">
+    <mat-label id="genderSearch" >Search By Working Hours </mat-label>
+    <mat-select formControlName="workingHours" (click)="filter()">
+      <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</header>
+    <mat-card [value]="item.companyName" *ngFor="let item of items" style=" cursor:pointer;"  (click)="goToDescribe(item.companyName)">
        <mat-card-header>
         <mat-card-title>
           <h2>{{ item.header }}</h2>
+          <label style="font-size: 12px;">  {{item.companyName}}</label>
+          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+          <Label style="font-size: 12px;">   City: {{ item.city }}</Label>
+          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+          <label style="font-size: 12px;">Job Title: {{item.jobTitle}}  </label> 
         
         </mat-card-title>
-    <mat-card-subtitle>{{item.companyName}}</mat-card-subtitle>
+  
       </mat-card-header>
-      <mat-card-content>
-        {{ item.content }}
-      </mat-card-content>
-      <mat-card-actions>
-        <button  mat-raised-button id="RegisterSubmit" class="submitbtn" >Apply Now!</button>
-    </mat-card-actions>
+
     </mat-card>
   </div>
 

@@ -89,7 +89,7 @@
                             
                           <mat-form-field  *ngIf="candidate" class="example-full-width"  fxFill>
                             <mat-label id="genderLabel"  >Gender... </mat-label>
-                            <mat-select formControlName="gender">
+                            <mat-select formControlName="gender" onchange="">
                               <mat-option id="genderOption"  [value]="gender" *ngFor="let gender of Gender">{{gender}}
                               </mat-option>
                             </mat-select>

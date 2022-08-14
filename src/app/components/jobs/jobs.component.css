@@ -1,0 +1,10 @@
+mat-card:hover{
+    background-color: lightgrey;
+    color: #790100;
+}
+mat-form-field:hover{
+ background-color:darkgrey;
+   
+
+    color: #790100;
+}
