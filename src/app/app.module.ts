@@ -1,3 +1,6 @@
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CandidateService } from './service/candidate.service';
+
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFileUploaderModule } from "angular-file-uploader";
@@ -27,7 +30,11 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { JobDescriptionComponent } from './components/job-description/job-description.component';
+/**  HTTP Connection*/
 
+import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 
 
 @NgModule({
@@ -40,6 +47,7 @@ import { JobDescriptionComponent } from './components/job-description/job-descri
     ForgotPasswordComponent,
     JobsComponent,
     JobDescriptionComponent,
+    CandidateProfileComponent,
     
   ],
   imports: [
@@ -54,8 +62,10 @@ import { JobDescriptionComponent } from './components/job-description/job-descri
     FlexLayoutModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    HttpClientModule ,
+    MatSidenavModule,
   ],
-  providers: [],
+  providers: [CandidateService,DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

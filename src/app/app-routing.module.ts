@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component'
 import { JobsComponent } from './components/jobs/jobs.component';
 import { JobDescriptionComponent} from './components/job-description/job-description.component'
+import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'ForgotPassword', component: ForgotPasswordComponent },
   { path: 'jobs', component: JobsComponent },
   { path: 'JobDescriptionComponent', component:JobDescriptionComponent},
+  { path: 'CandidateProfileComponent', component:CandidateProfileComponent},
 ];
 
 @NgModule({

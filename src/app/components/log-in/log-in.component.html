@@ -12,17 +12,17 @@
   <mat-button-toggle value="Candidate" >Candidate</mat-button-toggle>
 </mat-button-toggle-group>
   -->
-      <form class="example-form">
+      <form class="example-form" [formGroup]="loginForm">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input  matInput placeholder="Username">
+            <input  matInput placeholder="Username" formControlName="userName">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input id="passowrdInput" matInput placeholder="Password">
+            <input id="passowrdInput" matInput placeholder="Password" formControlName="myPassword">
           </mat-form-field>
         </mat-card-content>
-        <button mat-raised-button fxFill id="submitBtn" class="submitbtn">Log in</button>
+        <button mat-raised-button fxFill id="submitBtn" class="submitbtn" (click)="submit()">Log in</button>
         <br><br>
         
       </form>

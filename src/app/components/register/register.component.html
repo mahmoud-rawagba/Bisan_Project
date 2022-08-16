@@ -20,7 +20,17 @@
 
         
         <form [formGroup]="registerForm" (ngSubmit)="register()" >
+          <mat-form-field  *ngIf="company">
+          
+            <input id="companyAddress" matInput placeholder="Company address" formControlName="address" name="companyAddress">
+          
+          </mat-form-field>
 
+          <mat-form-field  *ngIf="company">
+          
+            <input id="companyNameInput" matInput placeholder="Company Name" formControlName="companyName" name="companyName">
+          
+          </mat-form-field>
           <mat-form-field >
           
             <input id="userNameInput" matInput placeholder="User Name" formControlName="username" name="username">
@@ -67,25 +77,15 @@
                 
                       <mat-form-field *ngIf="candidate">
                     
-                        <input id="firstNameInput" matInput placeholder="First Name" formControlName="firstname" name="firstname">
+                        <input id="fullNameInput" matInput placeholder="First Name" formControlName="fullName" name="fullName">
                         <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
                           with the .touched check we only display the hints if the input was touched by the users -->
-                        <mat-error *ngIf="this.registerForm.get('firstname')?.touched && this.registerForm.get('firstname')?.hasError('required')">
-                          FirstName is required</mat-error>
+                        <mat-error *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('required')">
+                          fullName is required</mat-error>
                     
                         </mat-form-field>
             
-              
-
-                        <mat-form-field *ngIf="candidate">
-                
-                          <input id="lastNameInput" matInput placeholder="Last Name" formControlName="lastname" name="lastname">
-                          <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
-                            with the .touched check we only display the hints if the input was touched by the users -->
-                          <mat-error *ngIf="this.registerForm.get('lastname')?.touched && this.registerForm.get('lastname')?.hasError('required')">
-                            LastName is required</mat-error>
-                      
-                          </mat-form-field>
+        
                             
                           <mat-form-field  *ngIf="candidate" class="example-full-width"  fxFill>
                             <mat-label id="genderLabel"  >Gender... </mat-label>
@@ -97,7 +97,7 @@
 
                           <mat-form-field *ngIf="candidate" class="example-full-width"  fxFill>
                             <mat-label id="academicLabel" >Academic Degree... </mat-label>
-                            <mat-select formControlName="degree">
+                            <mat-select formControlName="studyDegree">
                               <mat-option  id="{{[degree]}}" [value]="degree" *ngFor="let degree of Degree">{{degree}}
                               </mat-option>
                             </mat-select>
@@ -105,14 +105,14 @@
                                 
           
                           <mat-form-field *ngIf="candidate" class="example-full-width" matInput placeholder="Your speciality"   fxFill>
-                            <input id="fieldInput" matInput placeholder="Field">
+                            <input id="fieldInput" matInput placeholder="Field" formControlName="field">
                           </mat-form-field>
                     
                     
                           <mat-form-field  *ngIf="candidate" class="example-full-width">
                             <input id="intrestInput" matInput placeholder="Add Intrest" #newIntrest 
                             (keyup.enter)="addIntrest(newIntrest.value)"
-                            (blur)="addIntrest(newIntrest.value); newIntrest.value='' " fxFill>
+                            (blur)="addIntrest(newIntrest.value); newIntrest.value='' " fxFill formControlName="intrest">
                             <br>
                             
                           </mat-form-field>
@@ -130,7 +130,7 @@
                               </mat-select>
                             </mat-form-field>      
                             <mat-form-field  id="{{[date]}}"  *ngIf="candidate" class="example-full-width"  fxFill>
-                              <input id="birthDate" type="date" matInput placeholder="Date of Birth">
+                              <input id="birthDate" type="date" matInput placeholder="Date of Birth" formControlName="dateOfBirth">
                             </mat-form-field>
 
                                                     <mat-form-field appearance="fill"  *ngIf="candidate">
@@ -190,7 +190,7 @@
  
   <br>
   <div >
-    <button  mat-raised-button fxFill id="RegisterSubmit" class="submitbtn" (click)="addUser()">Register</button>
+    <button  mat-raised-button fxFill id="RegisterSubmit" class="submitbtn" (click)="submit()">Register</button>
   
   </div>
 

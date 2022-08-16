@@ -3,37 +3,63 @@
 
 
 
+<mat-form  [formGroup]="filterForm" fxfill>
+
+  <div class="container" fxfill>
+    <header style="background-color: lightgrey;
+    margin-bottom: 1.5%;">
+      <mat-form-field  style="width: 30%;  color:aliceblue;">
+      <mat-label id="citySearch" >Search By City </mat-label>
+      <mat-select formControlName="city" (click)="filter()">
+        <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
+      <mat-label id="genderSearch" >Search By Gender </mat-label>
+      <mat-select formControlName="gender" (click)="filter()">
+        <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field  style="width: 30%;">
+      <mat-label id="genderSearch" >Search By Working Hours </mat-label>
+      <mat-select formControlName="workingHours" (click)="filter()">
+        <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </header>
+  
+  
+  
+
+<mat-drawer-container fxfill>
+
+  <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL >
+   
+    <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+     
+    </button>
+    <br>
+    <button (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
+      <mat-icon >home</mat-icon>
+    </button>
+    <BR>
+      <button (click)="showFiller = !showFiller" mat-raised-button (click)="account()">
+        <mat-icon >account_circle</mat-icon>
+      </button>
+  </mat-drawer>
+  <BR>
 
 
+  <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+    <mat-icon >menu</mat-icon>
+  </button>
 
-<mat-form  [formGroup]="filterForm">
-<div class="container" >
-  <header style="background-color: lightgrey;
-  margin-bottom: 1.5%;">
-    <mat-form-field  style="width: 30%;  color:aliceblue;">
-    <mat-label id="citySearch" >Search By City </mat-label>
-    <mat-select formControlName="city" (click)="filter()">
-      <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
-    <mat-label id="genderSearch" >Search By Gender </mat-label>
-    <mat-select formControlName="gender" (click)="filter()">
-      <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field  style="width: 30%;">
-    <mat-label id="genderSearch" >Search By Working Hours </mat-label>
-    <mat-select formControlName="workingHours" (click)="filter()">
-      <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</header>
     <mat-card [value]="item.companyName" *ngFor="let item of items" style=" cursor:pointer;"  (click)="goToDescribe(item.companyName)">
        <mat-card-header>
         <mat-card-title>
@@ -49,7 +75,21 @@
       </mat-card-header>
 
     </mat-card>
-  </div>
+    <mat-card>
+      askdnaslkdnasld
+    </mat-card>
+    <mat-card>
+      askdnaslkdnasld
+    </mat-card>
+-
 
+
+    
+
+
+
+  </mat-drawer-container>
+
+</div>
 </mat-form>
 
