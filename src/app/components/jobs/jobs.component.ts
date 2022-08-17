@@ -1,3 +1,4 @@
+import { Iprofile } from './../../candProfile';
 import { Observable } from 'rxjs';
 import { Ijobs } from './../../jobs';
 import { Component, OnInit } from '@angular/core';
@@ -17,6 +18,12 @@ import {NgZone} from '@angular/core';
 })
 
 export class JobsComponent implements OnInit {
+  jobsList : Ijobs;
+  person : Iprofile;
+  param;
+   jobs={
+
+   };
   showFiller = false;
 public items=[]
   City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
@@ -26,26 +33,57 @@ public items=[]
   public companyName: any;
 
 
- private _url: string = "C:/Users/BisanTraining4/login_new_web/Bisan_Project/src/assets/data/jobs.json"
+ private _url: string = "./../assets/data/jobs.json"
 
 
- constructor(private ngZone: NgZone, private http: HttpClient,
-  private router: Router) { }
+ constructor(private ngZone: NgZone, private http:HttpClient,
+  private router: Router) {
+    this.param=this.router.getCurrentNavigation().extras.state.example
+    this.person=this.router.getCurrentNavigation().extras.state.personInfo
+    
+    //this.jobsList.city= this.router.getCurrentNavigation().extras.state.example.companyID.cities.cityName;
+    //this.jobsList.companyName= this.router.getCurrentNavigation().extras.state.example.companyID.companyName;
+   //console.log(   "prrrrrrrrrrrrrrrrrrrrrrrrrra" ,this.router.getCurrentNavigation().extras.state.example); 
+   }
 
 
   ngOnInit(): void {
-    this.getJobs()
-    .subscribe(data => {
-      this.items = data
-      console.log(this.items)
 
-    });
+    this.http.get('http://10.10.32.82:8080/Job/Show', {
+      params:this.param,
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      console.log("ewewewwewewewewe",response.body)
+      this.jobs= response.body
+     //console.log(response);
+    //console.log("test1",this.jobs)
+ 
+    })
+   
+    .catch(console.log);
+    console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
+   
+
+    // this.getJobs()
+    // .subscribe(data => {
+    //   this.items = data
+    //   console.log(this.items)
+
+    // });
   }
 
   
-    getJobs(): Observable<Ijobs[]>{
-      return this.http.get<Ijobs[]>(this._url);
-    }
+    // getJobs(): Observable<Ijobs[]>{
+    //   this.http.get('http://10.10.32.82:8080/Company/alldata').subscribe(res => {
+    //    // console.log(res)
+
+    //   })
+
+    
+    //   return this.http.get<Ijobs[]>(this.router.getCurrentNavigation().extras.state.example);
+    // }
 
   form: FormGroup = new FormGroup({});
   filterForm = new FormGroup({
@@ -64,8 +102,33 @@ public items=[]
     this.router.navigate(['JobDescriptionComponent']);
   }
   account(){
-    this.router.navigate(['CandidateProfileComponent']);
+
+   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.person} });
+    
   }
+  // updateFilter(){
+  //   this.param.city= this.filterForm.get('city').value
+  //   this.param.jobTime=this.filterForm.get('workingHours').value
+  //   this.param.gender=this.filterForm.get('genderToJob').value
+  //   this.http.get('http://10.10.32.82:8080/Job/Show', {
+  //     params:this.param,
+  //     observe: 'response'
+  //   })
+  //   .toPromise()
+  //   .then(response => {
+  //     console.log("ewewewwewewewewe",response.body)
+  //     this.jobs= response.body
+  //    //console.log(response);
+  //   //console.log("test1",this.jobs)
+ 
+  //   })
+   
+  //   .catch(console.log);
+  //   console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
+
+  // }
+
+
   
 
 }

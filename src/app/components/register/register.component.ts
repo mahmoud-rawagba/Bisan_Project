@@ -164,7 +164,7 @@ export class RegisterComponent implements OnInit {
     })
     
   }
-  this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
+  this.http.post<any>('http://10.10.32.82:8080/Company/register', this.registerForm.value, httpOptions).subscribe(res =>{
     console.log(res)
   })
   this.router.navigate(['jobs']);

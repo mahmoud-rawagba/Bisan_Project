@@ -1,7 +1,16 @@
 export interface Ijobs{
-    header: string,
+  
     companyName: string,
-    content: string,
     city: string,
-    jobTitle: string
+    jobId: number,
+    jobDescription: string,
+    jobField: string,
+    jobStartDate: string,
+    jobEndDate: string,
+    jobIsFinished: boolean,
+    degreeRequierd: string,
+    genderToJob: string,
+    jobTime: string,
+    jobTitle
 }
+
