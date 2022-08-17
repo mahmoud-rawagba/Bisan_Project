@@ -17,8 +17,9 @@ export class LogInComponent implements OnInit {
    type;
 public x: any;
   constructor(private http: HttpClient,
-    private candidateService: CandidateService,
-    private router: Router
+
+    private candidateService: CandidateService,private router: Router,
+
     ) { 
    
   }
@@ -38,6 +39,7 @@ public x: any;
     };
 
     this.http.post<any>('http://10.10.32.82:8080/login', this.loginForm.value, httpOptions).subscribe(res =>{
+
     // console.log(">>>>>>>>>>>>>>>>>>",res)
      
       this.obj = {
@@ -49,6 +51,9 @@ public x: any;
       this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
+      if(res!=null){
+        this.router.navigate(['jobs']);
+     
  
 
       if(this.type == "person"){
@@ -71,10 +76,14 @@ public x: any;
     else{
       console.log("No Companies Yet!")
     }
+  }else{
+    window.alert("user not found");
+  }
 
   })
  
    
+
 
    /* this.http.get('http://10.10.32.82:8080/Company/alldata').subscribe(res => {
       console.log(res)

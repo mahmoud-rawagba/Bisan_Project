@@ -72,9 +72,9 @@ update(){
     this.router.navigate(['CandidateProfileComponent']);
   }
   home(){
-    console.log("it did it")
+
+
     this.router.navigate(['jobs']);
-   
   }
 
   
