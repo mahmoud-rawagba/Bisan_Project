@@ -24,5 +24,8 @@ export class CandidateProfileComponent implements OnInit {
   account(){
     this.router.navigate(['CandidateProfileComponent']);
   }
+  home(){
+    this.router.navigate(['jobs']);
+  }
   
 }
