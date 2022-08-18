@@ -54,10 +54,12 @@ export class RegisterComponent implements OnInit {
     toggleVisibilityCompany(){
     this.company= true;
     this.candidate=false;
+    this.selected="company";
     }
     toggleVisibilityCandidate(){
       this.company= false;
       this.candidate=true;
+      this.selected="candidate";
     }
 
       
@@ -164,10 +166,40 @@ export class RegisterComponent implements OnInit {
     })
     
   }
-  this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
+  console.log(this.selected);
+if(this.selected=="company"){
+  this.http.post<any>('http://10.10.32.82:8080/Company/register', this.registerForm.value, httpOptions).subscribe(res =>{
+    console.log("hahahahahaha");
     console.log(res)
+    if(res==true){
+      this.router.navigate(['login']);
+    }else{
+      window.alert("error in registration");
+    }
   })
-  this.router.navigate(['jobs']);
+}else if(this.selected=="candidate"){
+  this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
+    console.log("nnnnnnnnnnnnnnnn");
+    console.log(res)
+    if(res==true){
+      this.router.navigate(['login']);
+    }else{
+      window.alert("error in registration");
+    }
+  })
+}
+  
+  // this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
+  //   console.log(res)
+  //   if(res==true){
+  //     this.router.navigate(['login']);
+  //   }else{
+  //     window.alert("error in registration");
+  //   }
+  // })
+ 
+  
+  
 
   }
 

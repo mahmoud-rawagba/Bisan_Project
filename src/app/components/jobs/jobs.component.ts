@@ -26,7 +26,7 @@ public items=[]
   public companyName: any;
 
 
- private _url: string = "C:/Users/BisanTraining4/login_new_web/Bisan_Project/src/assets/data/jobs.json"
+ private _url: string = "./../assets/data/jobs.json"
 
 
  constructor(private ngZone: NgZone, private http: HttpClient,
