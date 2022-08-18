@@ -54,13 +54,16 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+        
+            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" (click)="updateFilter()">Search!</button>
+      
 
         </header>
 
 
         
 
-    <mat-card *ngFor="let job of jobs" style=" cursor:pointer;"  (click)="goToDescribe(item.companyName)" fxfill>
+    <mat-card *ngFor="let job of jobs" style=" cursor:pointer;"  (click)="goToDescribe(job.jobId)" fxfill>
       <mat-card-header fxfill>
        <mat-card-title fxfill>
          <!-- <h2>{{ item.header }}</h2> -->

@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-job-description',
@@ -6,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-description.component.css']
 })
 export class JobDescriptionComponent implements OnInit {
-
-  constructor() { }
+  job_id;
+  jobDes;
+  constructor(private router:Router, private http:HttpClient) {
+   this.job_id= this.router.getCurrentNavigation().extras.state.example
+   }
 
   ngOnInit(): void {
+    
+
+    this.http.get('http://10.10.32.82:8080/Job/Show', {
+      params:this.job_id,
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      console.log("ewewewwewewewewe",response.body)
+      this.jobDes= response.body;
+     //console.log(response);
+    //console.log("test1",this.jobs)
+ 
+    })
+   
+    .catch(console.log);
   }
 
   items = [

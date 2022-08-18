@@ -166,14 +166,28 @@ export class RegisterComponent implements OnInit {
     })
     
   }
-  this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
-    console.log(res)
-    if(res==true){
-      this.router.navigate(['login']);
-    }else{
-      window.alert("error in registration");
-    }
-  })
+  console.log(this.selected);
+  if(this.selected=="company"){
+    this.http.post<any>('http://10.10.32.82:8080/Company/register', this.registerForm.value, httpOptions).subscribe(res =>{
+      console.log("hahahahahaha");
+      console.log(res)
+      if(res==true){
+        this.router.navigate(['login']);
+      }else{
+        window.alert("error in registration");
+      }
+    })
+  }else if(this.selected=="candidate"){
+    this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
+      console.log("nnnnnnnnnnnnnnnn");
+      console.log(res)
+      if(res==true){
+        this.router.navigate(['login']);
+      }else{
+        window.alert("error in registration");
+      }
+    })
+  }
 }
   
   // this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
@@ -191,5 +205,5 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  }
+  
 

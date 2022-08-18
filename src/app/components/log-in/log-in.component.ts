@@ -41,7 +41,7 @@ public x: any;
     this.http.post<any>('http://10.10.32.82:8080/login', this.loginForm.value, httpOptions).subscribe(res =>{
 
     // console.log(">>>>>>>>>>>>>>>>>>",res)
-     
+    if(res!=null){
       this.obj = {
         gender: res.gender,
         city:  res.city.cityName,
@@ -51,8 +51,8 @@ public x: any;
       this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
-      if(res!=null){
-        this.router.navigate(['jobs']);
+     
+      
      
  
 

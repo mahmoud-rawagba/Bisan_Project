@@ -95,38 +95,39 @@ public items=[]
   filter(){
     console.log(this.filterForm.value)
   }
+  
   goToDescribe(value){
-    let companyName= value;
-    console.log("clicked! with value"+ companyName );
-
-    this.router.navigate(['JobDescriptionComponent']);
+    this.router.navigate(['JobDescriptionComponent'], {state : {example:value}});
   }
   account(){
 
    this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.person} });
     
   }
-  // updateFilter(){
-  //   this.param.city= this.filterForm.get('city').value
-  //   this.param.jobTime=this.filterForm.get('workingHours').value
-  //   this.param.gender=this.filterForm.get('genderToJob').value
-  //   this.http.get('http://10.10.32.82:8080/Job/Show', {
-  //     params:this.param,
-  //     observe: 'response'
-  //   })
-  //   .toPromise()
-  //   .then(response => {
-  //     console.log("ewewewwewewewewe",response.body)
-  //     this.jobs= response.body
-  //    //console.log(response);
-  //   //console.log("test1",this.jobs)
- 
-  //   })
-   
-  //   .catch(console.log);
-  //   console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
+  updateFilter(){
+    this.param=this.filterForm;
+    // this.param.city= this.filterForm.get('city').value
+    // this.param.jobTime=this.filterForm.get('workingHours').value
+    // this.param.gender=this.filterForm.get('genderToJob').value
+    this.http.get('http://10.10.32.82:8080/Job/Show', {
+      params:this.param,
+      observe: 'response'
+    })
 
-  // }
+    .toPromise()
+    .then(response => {
+      console.log("ewewewwewewewewe",response.body)
+      this.jobs= response.body
+     //console.log(response);
+    //console.log("test1",this.jobs)
+ 
+    })
+    
+   
+    .catch(console.log);
+    console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+this.param)
+  }
 
 
   

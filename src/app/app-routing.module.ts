@@ -6,7 +6,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { JobsComponent } from './components/jobs/jobs.component';
 import { JobDescriptionComponent} from './components/job-description/job-description.component'
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
-import {CompanyHomePComponent} from './components/company-home-p/company-home-p.component'
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'jobs', component: JobsComponent },
   { path: 'JobDescriptionComponent', component:JobDescriptionComponent},
   { path: 'CandidateProfileComponent', component:CandidateProfileComponent},
-  { path: 'CompanyHome',component:CompanyHomePComponent }
+
 
 ];
 
