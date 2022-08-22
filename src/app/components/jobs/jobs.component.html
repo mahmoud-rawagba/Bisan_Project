@@ -28,12 +28,12 @@
 
 
         <div class="main-content" fxfill>
-          <mat-form  [formGroup]="filterForm" >
+          <mat-form  [formGroup]="filterForm"  *ngIf="type">
           <header style="background-color: lightgrey;
           margin-bottom: 1.5%;">
             <mat-form-field  style="width: 30%;  color:aliceblue;">
             <mat-label id="citySearch" >Search By City </mat-label>
-            <mat-select formControlName="city" (click)="filter()">
+            <mat-select formControlName="city" >
               <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
               </mat-option>
             </mat-select>
@@ -41,53 +41,60 @@
         
           <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
             <mat-label id="genderSearch" >Search By Gender </mat-label>
-            <mat-select formControlName="gender" (click)="filter()">
+            <mat-select formControlName="gender" >
               <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         
-          <mat-form-field  style="width: 30%;">
+          <!-- <mat-form-field  style="width: 30%;">
             <mat-label id="genderSearch" >Search By Working Hours </mat-label>
-            <mat-select formControlName="workingHours" (click)="filter()" >
+            <mat-select formControlName="workingHours" >
               <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
         
-            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" (click)="updateFilter()">Search!</button>
+            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" (click)=" filter()">Search!</button>
       
 
         </header>
 
 
-        
+      </mat-form>
 
     <mat-card *ngFor="let job of jobs" style=" cursor:pointer;"  (click)="goToDescribe(job.jobId)" fxfill>
-      <mat-card-header fxfill>
-       <mat-card-title fxfill>
+      <mat-card-header fxfill >
+       <mat-card-title fxfill  >
+        <div  fxfill style=" cursor:pointer;">
          <!-- <h2>{{ item.header }}</h2> -->
-         <label style="font-size: 20px;">  {{job.companyID?.companyName}}</label>
-         <br>
+         <label style=" cursor:pointer;" style="font-size: 20px;">  {{job.companyID?.companyName}}</label>
+         <br style=" cursor:pointer;">
          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;
-         <Label style="font-size: 12px;">   City: {{ job.companyID?.cities?.cityName }}</Label>
+         <Label style=" cursor:pointer;" style="font-size: 12px;">   City: {{ job.companyID?.cities?.cityName }}</Label>
          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
-         <label style="font-size: 12px;">Job Title: {{job.jobTitle}}  </label> 
-         <br>
-         <label style="font-size: 16px;">Description </label> 
-         <br>
-         <label style="font-size: 12px;"> {{job.jobDescription}}  </label> 
-       
+         <label style=" cursor:pointer;" style="font-size: 12px;">Job Title: {{job.jobTitle}}  </label> 
+         <br style=" cursor:pointer;">
+         <label style=" cursor:pointer;" style="font-size: 16px;">Description </label> 
+         <br style=" cursor:pointer;">
+         <label style=" cursor:pointer;" style="font-size: 12px;"> {{job.jobDescription}}  </label> 
+        </div>
        </mat-card-title>
  
      </mat-card-header>
 
    </mat-card>
+   <div class="fa-3x" *ngIf="!type">
    <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
-    <mat-icon >add</mat-icon>
+    <mat-icon   class="Material-icon">add</mat-icon>
+    <!-- <i class=""></i> -->
   </button>
+</div>
+ 
 
-  </mat-form>
+
+
+  
         </div>
 
 

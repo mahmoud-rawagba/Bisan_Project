@@ -14,6 +14,7 @@ export interface Iprofile{
 
 
 
+
     company_id: number;
     
 }

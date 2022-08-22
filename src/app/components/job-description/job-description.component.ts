@@ -24,7 +24,7 @@ export class JobDescriptionComponent implements OnInit {
     })
     .toPromise()
     .then(response => {
-      console.log("ewewewwewewewewe",response.body)
+      console.log(response.body,"<<<<<<<<<<<<<")
       this.jobDes= response.body;
      //console.log(response);
     //console.log("test1",this.jobs)
@@ -32,6 +32,7 @@ export class JobDescriptionComponent implements OnInit {
     })
    
     .catch(console.log);
+    
   }
 
   items = [
