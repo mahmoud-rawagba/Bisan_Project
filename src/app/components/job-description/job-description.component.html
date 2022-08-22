@@ -18,11 +18,36 @@
           
            </mat-card-header>
           
-           
-           <label style=" font-size:x-large">Description</label>
-           <br><br>
-     
+           <mat-card>
+               <label>Job Field: &nbsp;</label>
+               &nbsp;
+               <label>{{item.jobField }}</label>
+               <br>
+               <label>Job Published in: &nbsp;</label>
+               &nbsp;
+               <label>{{item.jobStartDate }}</label>
+               <br>
+               <label>Job  End in: &nbsp;</label>
+               &nbsp;
+               <label>{{item.jobEndDate }}</label>
+               <br>
+               <label>Degree Requiered: &nbsp;</label>
+               &nbsp;
+               <label>{{item.degreeRequierd }}</label>
+               <br>
+               <label>Gender: &nbsp;</label>
+               &nbsp;
+               <label>{{item.genderToJob }}</label>
+               <br>
+               <label>Time: &nbsp;</label>
+               &nbsp;
+               <label>{{item.jobTime }}</label>
+               
+
+           </mat-card>
+           <label style="font-sixe: large">Description:</label>
            <mat-card-content >
+     
             <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{item.content}} </label>
            </mat-card-content>
            <mat-card-actions>

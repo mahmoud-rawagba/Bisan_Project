@@ -48,13 +48,14 @@ body {
   color: #ffffff;
 }
 .registerbox{
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
   display: block;
   font-weight: 700;
   margin-top: 12%;
 
 }
+
 .box {
 
   position: relative;
