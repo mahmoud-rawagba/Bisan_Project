@@ -5,13 +5,13 @@
              <mat-card-title style=" cursor:pointer;">
                 <br>
                 <br>
-               <label> {{item.companyName}}</label>
+               <label> {{jobDes.companyID?.companyName}}</label>
          
              <br><br>
             
             <label>Job Title &nbsp;:</label>
              &nbsp;
-             <label >{{ item.jobTitle }}</label>
+             <label >{{jobDes.jobTitle}} </label>
              
              </mat-card-title>
             
@@ -47,13 +47,22 @@
            </mat-card>
            <label style="font-sixe: large">Description:</label>
            <mat-card-content >
-     
-            <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{item.content}} </label>
-           </mat-card-content>
-           <mat-card-actions>
+            <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> {{jobDes.jobDescription}}  </label>
+          
+          </mat-card-content>
+
+          
+          <mat-card-footer style="padding-right:97%">
+            <h1 style="color: #790100; padding-right:97%">Contact Us!</h1>
+            <label>Email:{{jobDes.companyID?.companyEmail}}</label>
+            <br>
+               <label>Phone:{{jobDes.companyID?.companyPhone}}</label>
+               <label>address:{{jobDes.companyID?.address}}</label>
+        
+          <mat-card-actions>
             <button  mat-raised-button id="RegisterSubmit" class="submitbtn" >Apply Now!</button>
         </mat-card-actions>
-     
+      </mat-card-footer>
          </mat-card>
         </div>
 </div>
