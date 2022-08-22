@@ -1,3 +1,4 @@
+import { AddJobComponent } from './components/add-job/add-job.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogInComponent } from './components/log-in/log-in.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'JobDescriptionComponent', component:JobDescriptionComponent},
   { path: 'CandidateProfileComponent', component:CandidateProfileComponent},
   { path: 'CompanyProfileComponent', component:CompanyProfileComponent },
+  {path: 'AddJob', component:AddJobComponent}
 
 ];
 

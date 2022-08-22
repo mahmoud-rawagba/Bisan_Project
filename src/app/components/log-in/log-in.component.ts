@@ -42,6 +42,7 @@ public x: any;
 
     // console.log(">>>>>>>>>>>>>>>>>>",res)
     if(res!=null){
+      if(res.type == "person"){
       this.obj = {
         gender: res.gender,
         city:  res.city.cityName,
@@ -51,16 +52,16 @@ public x: any;
       this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
-     
+      this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res} });
       
      
- 
+    }
 
-      if(this.type == "person"){
+    
       //console.log( "this is the obj",  this.obj)
      // console.log(this.para)
   
-     this.router.navigate(['jobs'], { state: {example :this.para, personInfo: res} });
+     
       //console.log("test1",this.jobs)
     
  
@@ -72,9 +73,10 @@ public x: any;
      // console.log("omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar",this.obj)
       
      // this.router.navigate(['jobs', this.obj]);
-    }
+    
     else{
       console.log("No Companies Yet!")
+      this.router.navigate(['jobs'], { state: {userInfo:res} });
     }
   }else{
     window.alert("user not found");

@@ -41,7 +41,7 @@ public items=[]
   private router: Router) {
 
     this.type =this.router.getCurrentNavigation().extras.state.userInfo.type
-    console.log(this.type)
+    console.log("looooooooooooooooooooook",this.router.getCurrentNavigation().extras.state.userInfo)
     this.user=this.router.getCurrentNavigation().extras.state.userInfo
     if ( this.type == "person"){
     
@@ -77,8 +77,8 @@ if(this.type == "person"){
    
   }
   else{
-    this.http.get('http://10.10.32.82:8080/Company/Show_Job', {
-    //  params:  JSON.parse(JSON.stringify(this.user.companyID)),
+    this.http.get('http://10.10.32.82:8080/Company/'+this.user.company_id+'/showJobs', {
+     // params:  JSON.parse(JSON.stringify(this.user.companyID)),
       observe: 'response'
     })
     .toPromise()
@@ -156,6 +156,10 @@ if(this.type == "person"){
     .catch(console.log);
     console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+this.param)
+  }
+  addJob(){
+    this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
+
   }
 
 

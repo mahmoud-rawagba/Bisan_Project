@@ -11,5 +11,9 @@ export interface Iprofile{
     description: string;
     intrests: string;
     picPath:string;
+
+
+
+    company_id: number;
     
 }

@@ -18,7 +18,8 @@ export class AddJobComponent implements OnInit {
     private acc: CandidateService,
 
   ) { 
-    // this.companyID=this.router.getCurrentNavigation().extras.state.example
+    this.companyID=this.router.getCurrentNavigation().extras.state.example
+    console.log(this.companyID)
   }
 
   ngOnInit(): void {
@@ -48,6 +49,7 @@ export class AddJobComponent implements OnInit {
   }
   addJob(){
     this.JobForm.value['companID'] =this.companyID;
+    console.log(this.JobForm.value)
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Access-Control-Allow-Origin':'*',
@@ -55,14 +57,14 @@ export class AddJobComponent implements OnInit {
       })
       
     }
-    // this.http.post<any>('http://10.10.32.82:8080/', this.JobForm.value, httpOptions).subscribe(res =>{
-    //   console.log(res)
-    //   if(res==true){
-    //     console.log("All good")
-    //   }else{
-    //     window.alert("error in registration");
-    //   }
-    // })
+    this.http.post<any>('http://10.10.32.82:8080/Job/add', this.JobForm.value, httpOptions).subscribe(res =>{
+      console.log(res)
+      if(res==true){
+        console.log("All good")
+      }else{
+        window.alert("error in registration");
+      }
+    })
   }
 
 }

@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   Locations = [];
   City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
   chosenCities: any = [];
-  Gender: any = ['Male','Female',"Other"];
+  Gender: any = ['Male','Female'];
   Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
  
   today: Date = new Date();

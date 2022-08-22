@@ -1,0 +1,137 @@
+
+<mat-form  fxfill>
+    <mat-drawer-container fxfill>
+    
+        <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL >
+         
+          <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+           
+          </button>
+          <br>
+    
+          <button (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
+            <mat-icon >arrow_forward</mat-icon>
+    
+          </button>
+          <BR>
+            <button (click)="showFiller = !showFiller" mat-raised-button (click)="home()">
+              <mat-icon >home</mat-icon>
+            </button>
+            <BR>
+            <button (click)="showFiller = !showFiller" mat-raised-button (click)="account()">
+              <mat-icon >account_circle</mat-icon>
+            </button>
+        </mat-drawer>
+        <BR>
+    
+    
+    
+            <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+                <mat-icon >menu</mat-icon>
+              </button>
+    
+    
+    
+         
+    
+              <div class="main-content" fxfill>
+                
+                <div class="container-fluid" fxfill>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-danger">
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="JobForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Job Title"  formControlName="jobTitle">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Job Field"  formControlName="jobField">
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <mat-form-field  class="example-full-width"  fxFill>
+                                                    <mat-label id="academicLabel" >Academic Degree... </mat-label>
+                                                    <mat-select formControlName="studyDegree">
+                                                      <mat-option  id="{{[degree]}}" [value]="degree" *ngFor="let degree of Degree">{{degree}}
+                                                      </mat-option>
+                                                    </mat-select>
+                                                  </mat-form-field> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                            <mat-form-field   class="example-full-width"  fxFill>
+                                            <mat-label id="genderSearch" >Time </mat-label>
+                                            <mat-select formControlName="jobTime">
+                                              <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
+                                              </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                          </div>
+    
+                                      </div>
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                            <mat-form-field   class="example-full-width"  fxFill>
+                                                <mat-label id="genderLabel"  >Gender... </mat-label>
+                                                <mat-select formControlName="gender" onchange="">
+                                                  <mat-option id="genderOption"  [value]="gender" *ngFor="let gender of Gender">{{gender}}
+                                                  </mat-option>
+                                                </mat-select>
+                                              </mat-form-field>
+                                          </div>
+                                      </div>
+     
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                              <label>About The Job</label>
+                                              <mat-form-field class="example-full-width">
+                                                 <textarea matInput placeholder="Add Description About The Job " formControlName="jobDescription"></textarea>                                               </mat-form-field>
+                             
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                        <mat-form-field   class="example-full-width">
+                                            <input id="endDate" type="date" matInput placeholder="Date You Want to Stop Showing the Job Advertisement " formControlName="endDate">
+                                          </mat-form-field>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="addJob()" >Add The Job</button>
+                                         </div>
+
+                                    <br><br> <br><br><br> <br>
+                                   
+                                        <div class="clearfix"></div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                
+              </div>
+    
+    </mat-drawer-container>
+    
+    
+    
+        </mat-form>
