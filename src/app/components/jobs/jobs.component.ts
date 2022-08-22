@@ -19,7 +19,8 @@ import {NgZone} from '@angular/core';
 
 export class JobsComponent implements OnInit {
   jobsList : Ijobs;
-  person : Iprofile;
+  user: Iprofile;
+  type;
   param;
    jobs={
 
@@ -27,7 +28,7 @@ export class JobsComponent implements OnInit {
   showFiller = false;
 public items=[]
   City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
-  Gender: any = ['Male','Female',"Other"];
+  Gender: any = ['Male','Female'];
   WorkingHours: any=['FullTime', 'PartTime'];
  
   public companyName: any;
@@ -38,19 +39,46 @@ public items=[]
 
  constructor(private ngZone: NgZone, private http:HttpClient,
   private router: Router) {
-    this.param=this.router.getCurrentNavigation().extras.state.example
-    this.person=this.router.getCurrentNavigation().extras.state.personInfo
+
+    this.type =this.router.getCurrentNavigation().extras.state.userInfo.type
+    console.log(this.type)
+    this.user=this.router.getCurrentNavigation().extras.state.userInfo
+    if ( this.type == "person"){
     
-    //this.jobsList.city= this.router.getCurrentNavigation().extras.state.example.companyID.cities.cityName;
+      this.param=this.router.getCurrentNavigation().extras.state.example
+     
+    }
+    
+    
+   //this.jobsList.city= this.router.getCurrentNavigation().extras.state.example.companyID.cities.cityName;
     //this.jobsList.companyName= this.router.getCurrentNavigation().extras.state.example.companyID.companyName;
    //console.log(   "prrrrrrrrrrrrrrrrrrrrrrrrrra" ,this.router.getCurrentNavigation().extras.state.example); 
    }
 
 
   ngOnInit(): void {
-
+if(this.type == "person"){
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>> ",this.param,"<<<<<<<<<<<<<<<<<<<<<<<<<<")
     this.http.get('http://10.10.32.82:8080/Job/Show', {
       params:this.param,
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      console.log("ewewewwewewewewe",response.body)
+      this.jobs= response.body
+     //console.log(response);
+    //console.log("test1",this.jobs)
+ 
+    })
+   
+    .catch(console.log);
+    
+   
+  }
+  else{
+    this.http.get('http://10.10.32.82:8080/Company/Show_Job', {
+    //  params:  JSON.parse(JSON.stringify(this.user.companyID)),
       observe: 'response'
     })
     .toPromise()
@@ -66,6 +94,7 @@ public items=[]
     console.log("whaaaaaaaaaaaaaaaaaaaat",this.jobs)
    
 
+  }
     // this.getJobs()
     // .subscribe(data => {
     //   this.items = data
@@ -101,7 +130,7 @@ public items=[]
   }
   account(){
 
-   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.person} });
+   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.user} });
     
   }
   updateFilter(){
