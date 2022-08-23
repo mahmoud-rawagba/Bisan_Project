@@ -11,8 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class JobDescriptionComponent implements OnInit {
   job_id;
   jobDes;
+  type;
+
   constructor(private router:Router, private http:HttpClient) {
    this.job_id= this.router.getCurrentNavigation().extras.state.example
+   this.type = this.router.getCurrentNavigation().extras.state.type
+
    }
 
   ngOnInit(): void {

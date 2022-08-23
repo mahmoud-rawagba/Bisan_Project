@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
 
 
       ngOnInit() {
+        
        
       }
     /***************************switch between candidate and company */

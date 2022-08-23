@@ -52,7 +52,7 @@ public x: any;
       this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
-      this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res} });
+      this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginForm.value } });
       
      
     }

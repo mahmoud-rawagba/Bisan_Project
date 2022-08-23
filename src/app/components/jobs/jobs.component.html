@@ -1,24 +1,39 @@
 
 
+<div>
+  <mat-toolbar class="app-header"  height="60">
+    <div><h1 id="LogoName">BICHANCE</h1></div>
+    <span class="nav-tool-items">
+      <a mat-button id="headerLoginbtn" routerLink="../login" routerLinkActive="active">Log Out</a>
+  
+    </span>
+    
+  </mat-toolbar>
+<div style="margin-top: 90px;">
+  <router-outlet></router-outlet>
+
+</div>
+
+</div>
 
 
 
 <mat-form >
   <mat-drawer-container >
   
-      <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL >
+      <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;">
        
         <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
          
         </button>
         <br>
-        <button (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
-          <mat-icon >arrow_forward</mat-icon>
+        <button class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="drawer.toggle()">
+          Close the Bar
         </button>
         <BR>
       
-          <button (click)="showFiller = !showFiller" mat-raised-button (click)="account()">
-            <mat-icon >account_circle</mat-icon>
+          <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button (click)="account()" >
+          Account Profile
           </button>
       </mat-drawer>
       <BR>
@@ -26,12 +41,15 @@
           <mat-icon >menu</mat-icon>
         </button>
 
-
+        <div class="fa-3x" *ngIf="!type">
+          <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
+           <mat-icon   class="Material-icon">add</mat-icon>
+         </button>
+       </div>
         <div class="main-content" fxfill>
           <mat-form  [formGroup]="filterForm"  *ngIf="type">
-          <header style="background-color: lightgrey;
-          margin-bottom: 1.5%;">
-            <mat-form-field  style="width: 30%;  color:aliceblue;">
+          <header style=" margin-bottom: 1.5%;">
+            <mat-form-field  style="width: 20%;  color:aliceblue;">
             <mat-label id="citySearch" >Search By City </mat-label>
             <mat-select formControlName="city" >
               <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
@@ -39,21 +57,29 @@
             </mat-select>
           </mat-form-field>
         
-          <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
+          <mat-form-field  style="width: 20%;margin-left: 2%; margin-right: 2%;">
             <mat-label id="genderSearch" >Search By Gender </mat-label>
             <mat-select formControlName="gender" >
               <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        
-          <!-- <mat-form-field  style="width: 30%;">
-            <mat-label id="genderSearch" >Search By Working Hours </mat-label>
-            <mat-select formControlName="workingHours" >
-              <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
+          <mat-form-field  style="width: 20%;margin-left: 2%; margin-right: 2%;">
+            <mat-label id="degreeSearch" >Search By StudyDegree </mat-label>
+            <mat-select formControlName="studyDegree" >
+              <mat-option  id="{{[degree]}}" [value]="degree" *ngFor="let degree of Degree">{{degree}}
               </mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
+          <mat-form-field  style="width: 20%;margin-left: 2%; margin-right: 2%;">
+            <mat-label id="fieldSearch" >Search By Field </mat-label>
+            <mat-select formControlName="personField" >
+              <mat-option  id="{{[field]}}" [value]="field" *ngFor="let field of Field">{{field}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+
         
             <button  mat-raised-button id="RegisterSubmit" class="submitbtn" (click)=" filter()">Search!</button>
       
@@ -71,7 +97,7 @@
          <label style=" cursor:pointer;" style="font-size: 20px;">  {{job.companyID?.companyName}}</label>
          <br style=" cursor:pointer;">
          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;
-         <Label style=" cursor:pointer;" style="font-size: 12px;">   City: {{ job.companyID?.cities?.cityName }}</Label>
+         <Label style=" cursor:pointer;" style="font-size: 12px;">   City: {{ job.companyID?.city}}</Label>
          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
          <label style=" cursor:pointer;" style="font-size: 12px;">Job Title: {{job.jobTitle}}  </label> 
          <br style=" cursor:pointer;">
@@ -84,12 +110,7 @@
      </mat-card-header>
 
    </mat-card>
-   <div class="fa-3x" *ngIf="!type">
-   <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
-    <mat-icon   class="Material-icon">add</mat-icon>
-    <!-- <i class=""></i> -->
-  </button>
-</div>
+
  
 
 
@@ -100,91 +121,3 @@
 
   </mat-drawer-container>
 </mat-form>
-
-
-
-
-
-
-
-
-<!--
-
-<mat-form  [formGroup]="filterForm" fxfill>
-
-  <div class="container" fxfill>
-    <header style="background-color: lightgrey;
-    margin-bottom: 1.5%;">
-      <mat-form-field  style="width: 30%;  color:aliceblue;">
-      <mat-label id="citySearch" >Search By City </mat-label>
-      <mat-select formControlName="city" (click)="filter()">
-        <mat-option  id="{{[city]}}" [value]="city" *ngFor="let city of City">{{city}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field  style="width: 30%;margin-left: 2%; margin-right: 2%;">
-      <mat-label id="genderSearch" >Search By Gender </mat-label>
-      <mat-select formControlName="gender" (click)="filter()">
-        <mat-option  id="{{[gender]}}" [value]="gender" *ngFor="let gender of Gender">{{gender}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field  style="width: 30%;">
-      <mat-label id="genderSearch" >Search By Working Hours </mat-label>
-      <mat-select formControlName="workingHours" (click)="filter()">
-        <mat-option  id="{{[workingHours]}}" [value]="workingHours" *ngFor="let workingHours of WorkingHours">{{workingHours}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </header>
-  
-  
-  
-
-
-
-  <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL >
-   
-    <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
-     
-    </button>
-    <br>
-    <button (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
-      <mat-icon >home</mat-icon>
-    </button>
-    <BR>
-      <button (click)="showFiller = !showFiller" mat-raised-button (click)="account()">
-        <mat-icon >account_circle</mat-icon>
-      </button>
-  </mat-drawer>
-  <BR>
-
-
-  <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
-    <mat-icon >menu</mat-icon>
-  </button>
-
-
-    <mat-card [value]="item.companyName" *ngFor="let item of items" style=" cursor:pointer;"  (click)="goToDescribe(item.companyName)">
-       <mat-card-header>
-        <mat-card-title>
-          <h2>{{ item.header }}</h2>
-          <label style="font-size: 12px;">  {{item.companyName}}</label>
-          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
-          <Label style="font-size: 12px;">   City: {{ item.city }}</Label>
-          &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
-          <label style="font-size: 12px;">Job Title: {{item.jobTitle}}  </label> 
-        
-        </mat-card-title>
-  
-      </mat-card-header>
-
-    </mat-card>
-  
-
-</div>
-</mat-form>
-
--->

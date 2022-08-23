@@ -46,6 +46,7 @@ export class JobsComponent implements OnInit {
   filterF: Interfilter;
   type;
   param;
+  loginF:{};
    jobs={
 
    };
@@ -54,6 +55,8 @@ public items=[]
   City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah','Any'];
   Gender: any = ['Male','Female','Any'];
   WorkingHours: any=['FullTime', 'PartTime',"Any"];
+  Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
+  Field: any = ['CS','Civil Engineer', 'QA','FrontEnd','Other']
  
   public companyName: any;
 
@@ -66,6 +69,7 @@ public items=[]
 
 
     this.type =this.router.getCurrentNavigation().extras.state.userInfo.type
+    this.loginF= this.router.getCurrentNavigation().extras.state.loginF
     console.log("looooooooooooooooooooook",this.router.getCurrentNavigation().extras.state.userInfo)
     this.user=this.router.getCurrentNavigation().extras.state.userInfo
     if ( this.type == "person"){
@@ -161,6 +165,8 @@ if(this.type == "person"){
     
     this.filterF.city = this.filterForm.get('city').value
     this.filterF.gender = this.filterForm.get('gender').value
+    this.filterF.studyDegree = this.filterForm.get('studyDegree').value
+    this.filterF.personField= this.filterForm.get('personField').value
  
     this.param=this.filterF;
     console.log("this is param after update>>>>>>>>.",this.param)
@@ -185,11 +191,11 @@ if(this.type == "person"){
   }
   
   goToDescribe(JobId){
-    this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId}});
+    this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type} });
   }
   account(){
 
-   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.user} });
+   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.user, loginF: this.loginF } });
     
   }
   updateFilter(){
