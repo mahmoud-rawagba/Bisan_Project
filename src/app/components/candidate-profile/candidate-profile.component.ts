@@ -13,15 +13,15 @@ import { Router } from '@angular/router';
 export class CandidateProfileComponent implements OnInit {
   profileDetails: Iprofile;
 loginF:{};
-     
-      
 
-  constructor(private ngZone: NgZone, 
+
+
+  constructor(private ngZone: NgZone,
     private http: HttpClient,
     private router: Router,
     private fb: FormBuilder,
     private acc: CandidateService,
-    
+
 
     ) {
       this.profileDetails=this.router.getCurrentNavigation().extras.state.example
@@ -30,7 +30,7 @@ loginF:{};
       if(this.router.getCurrentNavigation().extras.state.example.type == "person"){
       this.profileDetails.city= this.router.getCurrentNavigation().extras.state.example.city.cityName
       }
-     
+
      }
 
 
@@ -39,32 +39,48 @@ loginF:{};
       console.log(res)})
   }
 update(){
-  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails); 
+  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails);
+  this.profileDetails.fullName=this.updatedform.get('fullName').value
+  this.profileDetails.city=this.updatedform.get('city').value
+  this.profileDetails.personField=this.updatedform.get('field').value
+  this.profileDetails.intrests=this.updatedform.get('intrest').value
+  this.profileDetails.studyDegree=this.updatedform.get('studyDegree').value
+  this.profileDetails.gender=this.updatedform.get('gender').value
+  this.profileDetails.description=this.updatedform.get('canddescription').value
+  this.profileDetails.dateOfBirth=this.updatedform.get('dateOfBirth').value
+  // this.profileDetails=this.updatedform.get('picPath').value
+
+  this.para=this.profileDetails;
+  console.log("this is param after update>>>>>>>>.",this.para)
+    this.http.post('http://10.10.32.82:8080/Person/update', {
+      params:this.para,
+      observe: 'response'
+    })
 }
-  
-/*
+
+
   form: FormGroup = new FormGroup({});
   updatedform = new FormGroup({
-    email: new FormControl(this.profileDetails.email, [Validators.required, Validators.email]),
-   
+    email: new FormControl('',[Validators.required, Validators.email]),
+
     username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
     passwordConfirm: new FormControl(null, [Validators.required]),
     phone: new FormControl(null),
 
-   
-    fullName: new FormControl(this.profileDetails.fullName, [Validators.required]),
-    
-    city: new FormControl(this.profileDetails.city),
-    field: new FormControl(this.profileDetails.field),
-    intrest: new FormControl(this.profileDetails.intrests),
-    studyDegree: new FormControl(this.profileDetails.academicDegree),
-    gender: new FormControl(this.profileDetails.gender),
-    canddescription : new FormControl(this.profileDetails.candDescription),
-    dateOfBirth: new FormControl(this.profileDetails.dateOfBirth),
-    picPath: new FormControl(this.profileDetails.picpath),
 
-})*/
+    fullName: new FormControl('', [Validators.required]),
+
+    city: new FormControl(),
+    field: new FormControl(),
+    intrest: new FormControl(),
+    studyDegree: new FormControl(),
+    gender: new FormControl(),
+    canddescription : new FormControl(),
+    dateOfBirth: new FormControl(),
+    picPath: new FormControl(),
+
+})
 
   showFiller = false;
   obj:{}
@@ -79,7 +95,7 @@ update(){
   }
   home(){
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
         'Access-Control-Allow-Origin':'*',
         'Content-Type': 'application/json',
       })
@@ -107,11 +123,11 @@ update(){
     })
   }
 }
-   
 
 
-  
-  
 
-  
+
+
+
+
 
