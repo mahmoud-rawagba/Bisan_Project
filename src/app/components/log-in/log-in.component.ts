@@ -20,8 +20,8 @@ public x: any;
 
     private candidateService: CandidateService,private router: Router,
 
-    ) { 
-   
+    ) {
+
   }
   form: FormGroup = new FormGroup({});
   loginForm = new FormGroup({
@@ -32,7 +32,7 @@ public x: any;
   submit(){
     console.log(this.loginForm.value)
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
         'Access-Control-Allow-Origin':'*',
         'Content-Type': 'application/json',
       })
@@ -53,27 +53,27 @@ public x: any;
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
       this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginForm.value } });
-      
-     
+
+
     }
 
-    
+
       //console.log( "this is the obj",  this.obj)
      // console.log(this.para)
-  
-     
+
+
       //console.log("test1",this.jobs)
-    
- 
+
+
       //this.router.navigate(['jobs'], { state: {example :this.jobs} });
 
       // this.http.get('http://10.10.32.82:8080/Job/Show', this.person,httpOptions).subscribe(result=>{
 
       // })
      // console.log("omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar",this.obj)
-      
+
      // this.router.navigate(['jobs', this.obj]);
-    
+
     else{
       console.log("No Companies Yet!")
       this.router.navigate(['jobs'], { state: {userInfo:res} });
@@ -83,8 +83,8 @@ public x: any;
   }
 
   })
- 
-   
+
+
 
 
    /* this.http.get('http://10.10.32.82:8080/Company/alldata').subscribe(res => {
