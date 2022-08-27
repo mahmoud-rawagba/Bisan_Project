@@ -14,7 +14,7 @@ export interface Iprofile{
 
 
 
-
+    personID:number;
     company_id: number;
     
 }

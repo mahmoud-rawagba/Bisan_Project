@@ -1,24 +1,24 @@
 <div class="registerbox" fxLayout="row" fxLayoutAlign="center center" >
-    <div class="container">
-        <mat-card [value]="item.companyName" *ngFor="let item of items" >
+    <div class="container" *ngFor="let item of jobDes " >
+        <mat-card *ngIf="item.jobId">
             <mat-card-header>
              <mat-card-title style=" cursor:pointer;">
                 <br>
                 <br>
-               <label> {{jobDes.companyName}}</label>
+               <label>{{item.companyID.companyName}}</label>
          
              <br><br>
             
             <label>Job Title &nbsp;:</label>
              &nbsp;
-             <label >{{jobDes.jobTitle}} </label>
+             <label >{{item.jobTitle}} </label>
              
              </mat-card-title>
             
           
            </mat-card-header>
           
-           <mat-card>
+           <div>
                <label>Job Field: &nbsp;</label>
                &nbsp;
                <label>{{item.jobField }}</label>
@@ -44,11 +44,11 @@
                <label>{{item.jobTime }}</label>
                
 
-           </mat-card>
+           </div>
            <br><br>
            <label style="font-size: large">Description:</label>
            <mat-card-content >
-            <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> {{jobDes.jobDescription}}  </label>
+            <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> {{item.jobDescription}}  </label>
           
           </mat-card-content>
 
@@ -56,15 +56,25 @@
           <mat-card-footer >
             <div class="container" style="left:50px">
             <h1 style="color: #790100; ">Contact Us!</h1>
-            <label>Email:{{jobDes.companyID?.companyEmail}}</label>
+            <label>Email:{{item.companyID?.companyEmail}}</label>
             <br>
-               <label>Phone:{{jobDes.companyID?.companyPhone}}</label>
+               <label>Phone:{{item.companyID?.companyPhone}}</label>
                <br>
-               <label>address:{{jobDes.companyID?.address}}</label>
+               <label>address:{{item.companyID?.address}}</label>
               </div>
-          <mat-card-actions *ngIf="type">
-            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" style="left: 300px;">Apply Now!</button>
-        </mat-card-actions>
+          <mat-card-actions >
+            <div *ngIf="!applied">
+            <button  mat-raised-button id="RegisterSubmit" class="submitbtn" style="left: 40%;" (click)="apply()">Apply Now!</button>
+              
+          </div>
+
+          <div *ngIf="applied">
+            <button  mat-button id="RegisterSubmit" class="submitbtn" style="left: 40%;cursor:default;" >{{status}}</button>
+              
+          </div>
+          </mat-card-actions>
+
+
       </mat-card-footer>
          </mat-card>
         </div>

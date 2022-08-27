@@ -20,11 +20,7 @@
 
         
         <form [formGroup]="registerForm" (ngSubmit)="register()" >
-          <mat-form-field  *ngIf="company">
-          
-            <input id="companyAddress" matInput placeholder="Company address" formControlName="address" name="companyAddress">
-          
-          </mat-form-field>
+
 
           <mat-form-field  *ngIf="company">
           
@@ -68,6 +64,11 @@
                     *ngIf="this.registerForm.get('passwordConfirm')?.dirty && this.registerForm.hasError('passwordsNotMatching')">
                      Password does not match
                    </mat-error>
+                   <mat-form-field  *ngIf="company">
+          
+                    <input id="companyAddress" matInput placeholder="Company address" formControlName="address" name="companyAddress">
+                  
+                  </mat-form-field>
                   
         
                    <mat-form-field  class="example-full-width" fxFill>

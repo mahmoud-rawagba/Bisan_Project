@@ -131,9 +131,6 @@ export class RegisterComponent implements OnInit {
       return this.form.controls;
     }
 
-    fileChange(e){
-      console.log(e)
-    }
 
     deleteLocations(index){
       this.Locations.splice(index,1)
@@ -141,19 +138,13 @@ export class RegisterComponent implements OnInit {
     deleteIntrest(intrestIndex){
       this.Intrests.splice(intrestIndex,1)
     }
-      // {username: value}
-    // example {id:1592304983049, title: 'Deadpool', year: 2015}
-  
-    //companyModel = new CompanyUser('','','',0,'',this.Locations,0,0,'')
+
     addUser(): void {
      let x = this.registerForm.value
     console.log(Object.keys(this.registerForm.value).filter(item => this.registerForm.value[item] !== null && this.registerForm.value[item] !== ''))
 
 
 
-    // localStorage.setItem('MyUser', JSON.stringify(this.companyForm.value) );
-     // {{companyModel | json}}
-      //localStorage.setItem('MyUser', JSON.stringify(this.companyModel) );
     }
  submit(){
   this.registerForm.value['intrest'] = this.Intrests.join();
@@ -190,15 +181,6 @@ export class RegisterComponent implements OnInit {
     })
   }
 }
-  
-  // this.http.post<any>('http://10.10.32.82:8080/Person/register', this.registerForm.value, httpOptions).subscribe(res =>{
-  //   console.log(res)
-  //   if(res==true){
-  //     this.router.navigate(['login']);
-  //   }else{
-  //     window.alert("error in registration");
-  //   }
-  // })
  
   
   

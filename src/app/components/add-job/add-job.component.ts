@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,10 +17,11 @@ export class AddJobComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private acc: CandidateService,
+     private datePipe: DatePipe
 
   ) { 
     this.companyID=this.router.getCurrentNavigation().extras.state.example
-    console.log(this.companyID)
+
   }
 
   ngOnInit(): void {
@@ -29,9 +31,13 @@ export class AddJobComponent implements OnInit {
   showFiller = false;
   WorkingHours: any=['FullTime', 'PartTime'];
   companyID;
+
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
   form: FormGroup = new FormGroup({});
   JobForm = new FormGroup({
-    companID: new FormControl(null),
+    companyID: new FormControl(null),
     jobTitle: new FormControl(null),
     jobField: new FormControl(null),
     endDate: new FormControl(null),
@@ -48,7 +54,9 @@ export class AddJobComponent implements OnInit {
     this.router.navigate(['jobs']);
   }
   addJob(){
-    this.JobForm.value['companID'] =this.companyID;
+     this.JobForm.value['companyID'] =this.companyID;
+   
+    this.JobForm.value['endDate']= this.datePipe.transform( this.JobForm.value['endDate'],"dd-MM-yyyy")
     console.log(this.JobForm.value)
     const httpOptions = {
       headers: new HttpHeaders({ 
@@ -58,11 +66,12 @@ export class AddJobComponent implements OnInit {
       
     }
     this.http.post<any>('http://10.10.32.82:8080/Job/add', this.JobForm.value, httpOptions).subscribe(res =>{
-      console.log(res)
-      if(res==true){
-        console.log("All good")
-      }else{
-        window.alert("error in registration");
+ 
+      if (res == true){
+        window.alert("Job was successfully added!")
+      }
+      else{
+        window.alert("ERROR!, Please Solve it Then Try Again")
       }
     })
   }

@@ -1,6 +1,6 @@
 import { Iprofile } from './../../candProfile';
 import { CandidateService } from './../../service/candidate.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -36,35 +36,10 @@ loginF:{};
 
   ngOnInit(): void {
     this.http.get('http://10.10.32.82:8080/Person/alldata').subscribe(res => {
-      console.log(res)})
+     })
   }
-update(){
-  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails); 
-}
-  
-/*
-  form: FormGroup = new FormGroup({});
-  updatedform = new FormGroup({
-    email: new FormControl(this.profileDetails.email, [Validators.required, Validators.email]),
-   
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-    passwordConfirm: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null),
 
-   
-    fullName: new FormControl(this.profileDetails.fullName, [Validators.required]),
-    
-    city: new FormControl(this.profileDetails.city),
-    field: new FormControl(this.profileDetails.field),
-    intrest: new FormControl(this.profileDetails.intrests),
-    studyDegree: new FormControl(this.profileDetails.academicDegree),
-    gender: new FormControl(this.profileDetails.gender),
-    canddescription : new FormControl(this.profileDetails.candDescription),
-    dateOfBirth: new FormControl(this.profileDetails.dateOfBirth),
-    picPath: new FormControl(this.profileDetails.picpath),
-
-})*/
+ 
 
   showFiller = false;
   obj:{}
@@ -95,13 +70,13 @@ update(){
             personField: res.personField
           }
           this.para=JSON.parse(JSON.stringify(this.obj)),
-          //this.type = res.type
+   
           this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginF} });
         }
 
       }
       else{
-        console.log("No Companies Yet!")
+      
         this.router.navigate(['jobs'], { state: {userInfo:res} });
       }
     })
