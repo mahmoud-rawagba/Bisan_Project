@@ -20,8 +20,8 @@ public x: any;
 
     private candidateService: CandidateService,private router: Router,
 
-    ) { 
-   
+    ) {
+
   }
   form: FormGroup = new FormGroup({});
   loginForm = new FormGroup({
@@ -32,7 +32,7 @@ public x: any;
   submit(){
     console.log(this.loginForm.value)
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
         'Access-Control-Allow-Origin':'*',
         'Content-Type': 'application/json',
       })

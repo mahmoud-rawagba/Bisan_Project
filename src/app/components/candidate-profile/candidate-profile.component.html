@@ -4,9 +4,9 @@
     <div><h1 id="LogoName">BICHANCE</h1></div>
     <span class="nav-tool-items">
       <a mat-button id="headerLoginbtn" routerLink="../login" routerLinkActive="active">Log Out</a>
-  
+
     </span>
-    
+
   </mat-toolbar>
 <div style="margin-top: 90px;">
   <router-outlet></router-outlet>
@@ -14,18 +14,19 @@
 </div>
 
 </div>
+<form [formGroup]="updatedform" >
 <mat-form fxfill>
 <mat-drawer-container fxfill>
 
     <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;">
-     
+
       <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
-       
+
       </button>
       <br>
 
       <button class="button1" (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
-        Close The Bar 
+        Close The Bar
 
       </button>
       <BR>
@@ -57,23 +58,23 @@
                                 <p class="card-category">Complete your profile</p>
                             </div>
                             <div class="card-body">
-                                <form>
+
                                     <div class="row">
                                         <div class="col-md-12">
                                           <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="{{profileDetails.fullName}}" >
+                                              <input matInput  formControlName="fullName" >{{profileDetails.fullName}}
                                             </mat-form-field>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="UserName" disabled>{{profileDetails.userName}}(disabled)
+                                              <input matInput placeholder="UserName" formControlName="username"   isabled>{{profileDetails.userName}}(disabled)
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-6">
                                             <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="Email" type="email">{{profileDetails.personEmail}}
+                                              <input matInput placeholder="Email" type="email" formControlName="email">
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -81,24 +82,24 @@
                                     <div class="row">
                                       <div class="col-md-6">
                                         <mat-form-field class="example-full-width">
-                                          <input matInput placeholder="Field" type="text">{{profileDetails.personField}}
+                                          <input matInput placeholder="Field" type="text" formControlName="field">{{profileDetails.personField}}
                                         </mat-form-field>
                                       </div>
                                         <div class="col-md-6">
                                           <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Academic Degree" type="text">{{profileDetails.studyDegree}}
+                                            <input matInput placeholder="Academic Degree" type="text" formControlName="studyDegree">{{profileDetails.studyDegree}}
                                           </mat-form-field>
                                         </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-md-6">
                                         <mat-form-field class="example-full-width">
-                                          <input matInput placeholder="city" type="text">{{profileDetails.city}}
+                                          <input matInput placeholder="city" type="text" formControlName="city">{{profileDetails.city}}
                                         </mat-form-field>
                                       </div>
                                       <div class="col-md-6">
                                         <mat-form-field class="example-full-width">
-                                          <input matInput placeholder="Phone" type="text">{{profileDetails.personPhone}}
+                                          <input matInput placeholder="Phone" type="text" formControlName="phone">{{profileDetails.personPhone}}
                                         </mat-form-field>
                                       </div>
 
@@ -106,21 +107,21 @@
                                     <div class="row">
                                       <div class="col-md-6">
                                         <mat-form-field class="example-full-width">
-                                          <input matInput placeholder="Date Of Birth" type="date">{{profileDetails.dateOfBirth}}
+                                          <input matInput placeholder="Date Of Birth" type="date" formControlName="dateOfBirth">{{profileDetails.dateOfBirth}}
                                         </mat-form-field>
                                       </div>
                                       <div class="col-md-6">
                                         <mat-form-field class="example-full-width">
-                                          <input matInput placeholder="Gender" type="text">{{profileDetails.gender}}
+                                          <input matInput placeholder="Gender" type="text" formControlName="gender">{{profileDetails.gender}}
                                         </mat-form-field>
                                       </div>
                                   </div>
- 
+
                                     <div class="row">
                                         <div class="col-md-12">
                                           <label>About Me</label>
                                           <mat-form-field class="example-full-width">
-                                             <textarea matInput placeholder="Info About Me !"></textarea>{{profileDetails.description}}
+                                             <textarea matInput placeholder="Info About Me !" formControlName="canddescription"></textarea>{{profileDetails.description}}
                                            </mat-form-field>
                                             <!-- <div class="form-group">
                                                 <div class="form-group">
@@ -132,14 +133,14 @@
                                     </div>
                                     <button mat-raised-button type="submit" class="btn btn-danger pull-right"  >Update Profile</button>
                                     <div class="clearfix"></div>
-                                </form>
+
                             </div>
                         </div>
                     </div>
 
                     </div>
                 </div>
-            
+
           </div>
 
 </mat-drawer-container>
@@ -147,3 +148,4 @@
 
 
     </mat-form>
+  </form>
