@@ -26,7 +26,7 @@ export class JobsComponent implements OnInit {
   user: Iprofile;
   filterF: Interfilter;
   type;
-  personID;
+  id;
   param;
   loginF:{};
    jobs={
@@ -148,14 +148,14 @@ if(this.type == "person"){
   }
   
   goToDescribe(JobId){
-    this.personID=this.user.personID
-    this.personID=JSON.parse(JSON.stringify(this.personID))
+    this.id=this.user.personID
+    this.id=JSON.parse(JSON.stringify(this.id))
     if(this.type == "person"){
-      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, personID:this.personID} });
+      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
 
     }
     else{
-      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, personID:this.personID} });
+      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
 
 
     }

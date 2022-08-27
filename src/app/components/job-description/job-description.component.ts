@@ -20,18 +20,18 @@ export class JobDescriptionComponent implements OnInit {
  
   type;
   param:{
-    personID;
+    id;
     jobID;
   };
-  personID;
+  id;
 status;
-applied = false;
+applied
   constructor(private router:Router, private http:HttpClient) {
     this.type = this.router.getCurrentNavigation().extras.state.type
     if(this.type== "person"){
       this.job_id= this.router.getCurrentNavigation().extras.state.example
 
-      this.personID = this.router.getCurrentNavigation().extras.state.personID
+      this.id = this.router.getCurrentNavigation().extras.state.id
     }
     else{
       this.job_id= this.router.getCurrentNavigation().extras.state.example
@@ -41,7 +41,7 @@ applied = false;
 
 
    this.param={
-    personID:this.personID,
+    id:this.id,
     jobID: this.job_id
    }
    this.param=JSON.parse(JSON.stringify(this.param))
@@ -101,10 +101,16 @@ applied = false;
 
  
         })
+    
+       
 
       }
+      this.applied = true
+      this.status = "Waiting For A Response"
 
-      this.ngOnInit()
+    
+
+
     }
 
 
