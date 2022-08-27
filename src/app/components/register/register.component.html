@@ -134,16 +134,16 @@
                               <input id="birthDate" type="date" matInput placeholder="Date of Birth" formControlName="dateOfBirth">
                             </mat-form-field>
 
-                                                    <mat-form-field appearance="fill"  *ngIf="candidate">
+                          <mat-form-field appearance="fill"  *ngIf="candidate">
     
-                          <textarea formControlName="canddescription" id="candidateDescriptionText" class="example-full-width" matInput
-                                    cdkTextareaAutosize
-                                    placeholder="Add some information about yourself so companies get to know you easier you can add skills or important internships etc.."
-                                    #autosize="cdkTextareaAutosize"
-                                    cdkAutosizeMinRows="1"
-                                    cdkAutosizeMaxRows="5">  
-                                  </textarea>
-                                </mat-form-field>
+                              <textarea formControlName="canddescription" id="candidateDescriptionText" class="example-full-width" matInput
+                                  cdkTextareaAutosize
+                                  placeholder="Add some information about yourself so companies get to know you easier you can add skills or important internships etc.."
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="1"
+                                  cdkAutosizeMaxRows="5">  
+                              </textarea>
+                            </mat-form-field>
 <!-- 
                                 <div  *ngIf="candidate">
                                   <h2 id="candidateCVHeader" >You can add A CV </h2>
@@ -201,11 +201,3 @@
 </div>
 
 
-
-<script>
-
- 
-  let Cities= [];
-  let Location= [];
-
-</script>

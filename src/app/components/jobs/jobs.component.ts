@@ -121,12 +121,12 @@ if(this.type == "person"){
 
   filter(){
     
-    this.filterF.city = this.filterForm.get('city').value
-    this.filterF.gender = this.filterForm.get('gender').value
-    this.filterF.studyDegree = this.filterForm.get('studyDegree').value
-    this.filterF.personField= this.filterForm.get('personField').value
-    this.param=JSON.parse(JSON.stringify(this.filterF))
-   
+    this.param.city = this.filterForm.get('city').value
+    this.param.gender = this.filterForm.get('gender').value
+    this.param.studyDegree = this.filterForm.get('studyDegree').value
+    this.param.personField= this.filterForm.get('personField').value
+    //this.param=JSON.parse(JSON.stringify(this.filterF))
+  
 
     this.http.get('http://10.10.32.82:8080/Job/search', {
       params:this.param,
