@@ -12,7 +12,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./job-description.component.css']
 })
 export class JobDescriptionComponent implements OnInit {
- 
+  on;
+ send;
+ sendS:{}
   job_id;
   apps:{
   }
@@ -73,6 +75,7 @@ applied
       else{
         this.apps = response.body[2]
         console.log("apppppppps",this.apps)
+
       }
 
     }
@@ -86,6 +89,8 @@ applied
     })
    
     .catch(console.log);
+
+   
  
 
   }
@@ -116,6 +121,43 @@ applied
 
     
 
+
+    }
+    response(value,applicationID){
+
+      const httpOptions = {
+        headers: new HttpHeaders({ 
+          'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json',
+        })
+      };
+      const headers = new HttpHeaders()
+    .set("Content-Type", "application/json");
+
+      if (value == 0){
+        this.send = "Rejected"
+      }
+      else{
+        this.send = "Approved!"
+      }
+      const status = this.send 
+
+      this.sendS={
+        applicationID,
+        status
+    
+      }
+      console.log(this.sendS)
+
+
+      this.http.put<any>('http://10.10.32.82:8080/applyToJob/update', this.sendS,  {headers})
+      .subscribe(data => {
+        window.alert(data)
+
+      });
+
+
+  
 
     }
 

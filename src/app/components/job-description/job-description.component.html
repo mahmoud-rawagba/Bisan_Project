@@ -100,9 +100,19 @@
               &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
               <label style=" cursor:pointer;" style="font-size: 12px;">Email: {{app.personEmail}}  </label> 
               <br style=" cursor:pointer;">
-              <label style=" cursor:pointer;" style="font-size: 16px;">Field </label> 
-              <br style=" cursor:pointer;">
-              <label style=" cursor:pointer;" style="font-size: 12px;">   </label> 
+
+              <label style=" cursor:pointer;" style="font-size: 12px;"> Applied In: {{app.date}}  </label> 
+              &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;
+              <div *ngIf="!app.status">
+                <button type="submit" class="btn btn-success {{app.applicationID}}approve" (click)="response(1,app.applicationID)">Approve</button>
+                <button type="submit" class="btn btn-danger {{app.applicationID}}reject" (click)="response(0,app.applicationID)">Reject</button>  
+
+              </div>
+
+              <div *ngIf="app.status">
+                <label  style="font-size: 20px;color: #790100;"> {{app.status}} </label>
+              </div>
+
              </div>
             </mat-card-title>
       
