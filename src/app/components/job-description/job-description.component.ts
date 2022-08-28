@@ -14,6 +14,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class JobDescriptionComponent implements OnInit {
  
   job_id;
+  apps:{
+  }
 
   jobDes:{
   };
@@ -28,15 +30,11 @@ status;
 applied
   constructor(private router:Router, private http:HttpClient) {
     this.type = this.router.getCurrentNavigation().extras.state.type
-    if(this.type== "person"){
+ 
       this.job_id= this.router.getCurrentNavigation().extras.state.example
 
       this.id = this.router.getCurrentNavigation().extras.state.id
-    }
-    else{
-      this.job_id= this.router.getCurrentNavigation().extras.state.example
 
-    }
 
 
 
@@ -62,6 +60,7 @@ applied
       console.log(response.body,"<<<<<<<<<<<<<")
       this.jobDes= response.body;
       if(response.body[1] == true){
+        if(this.type){
         this.applied = true
        if( response.body[2] == ""){
     this.status = "Waiting For A Response"
@@ -71,6 +70,13 @@ applied
         this.status =response.body[2]
        }
       }
+      else{
+        this.apps = response.body[2]
+        console.log("apppppppps",this.apps)
+      }
+
+    }
+
       else{
         this.applied = false
       }

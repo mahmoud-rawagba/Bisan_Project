@@ -1,5 +1,6 @@
-<div class="registerbox" fxLayout="row" fxLayoutAlign="center center" >
-    <div class="container" *ngFor="let item of jobDes " >
+<div class="registerbox"  >
+    <div class="container1" >
+      <div *ngFor="let item of jobDes " fxfill>
         <mat-card *ngIf="item.jobId">
             <mat-card-header>
              <mat-card-title style=" cursor:pointer;">
@@ -18,7 +19,7 @@
           
            </mat-card-header>
           
-           <div>
+           <div fxfill>
                <label>Job Field: &nbsp;</label>
                &nbsp;
                <label>{{item.jobField }}</label>
@@ -46,8 +47,9 @@
 
            </div>
            <br><br>
-           <label style="font-size: large">Description:</label>
-           <mat-card-content >
+          
+           <mat-card-content fxfill>
+            <label style="font-size: large" >Description:</label>
             <label style="font-size: medium;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> {{item.jobDescription}}  </label>
           
           </mat-card-content>
@@ -62,7 +64,7 @@
                <br>
                <label>address:{{item.companyID?.address}}</label>
               </div>
-          <mat-card-actions >
+          <mat-card-actions   *ngIf="type">
             <div *ngIf="!applied">
             <button  mat-raised-button id="RegisterSubmit" class="submitbtn" style="left: 40%;" (click)="apply()">Apply Now!</button>
               
@@ -73,9 +75,39 @@
               
           </div>
           </mat-card-actions>
+      
 
 
       </mat-card-footer>
          </mat-card>
+         </div>
+         <br>
+         <br>
+         <br>
+         <br>
+         <div>
+         <mat-card *ngIf="!type"   fxfill>
+          <mat-card-header fxfill >
+          
+            <mat-card-title fxfill  >
+              <h1> Applied Candidates</h1>
+             <div  fxfill *ngFor="let app of apps">
+            
+              <label style=" cursor:pointer;" style="font-size: 20px;"> Candidate:{{app.personName}} </label>
+              <br style=" cursor:pointer;">
+              &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;
+              <Label style=" cursor:pointer;" style="font-size: 12px;">   Study Degree {{app.studyDegree}}</Label>
+              &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+              <label style=" cursor:pointer;" style="font-size: 12px;">Email: {{app.personEmail}}  </label> 
+              <br style=" cursor:pointer;">
+              <label style=" cursor:pointer;" style="font-size: 16px;">Field </label> 
+              <br style=" cursor:pointer;">
+              <label style=" cursor:pointer;" style="font-size: 12px;">   </label> 
+             </div>
+            </mat-card-title>
+      
+          </mat-card-header>
+         </mat-card>
+
+         </div>
         </div>
-</div>

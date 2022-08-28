@@ -54,7 +54,7 @@
                 </mat-form-field>
       
                 <mat-form-field >
-                  <input type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
+                  <input id="confPass" type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
                   <mat-error id="requiredpassConf"
                     *ngIf="this.registerForm.get('passwordConfirm')?.touched && this.registerForm.get('passwordConfirm')?.hasError('required')">
                     Password Confirmation is required</mat-error>

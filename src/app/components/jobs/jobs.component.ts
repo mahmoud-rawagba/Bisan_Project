@@ -58,6 +58,7 @@ public items=[]
     
       //this.param=this.router.getCurrentNavigation().extras.state.example
       this.param = this.router.getCurrentNavigation().extras.state.example
+      console.log(">>>>>>>>>",this.param)
 
      
      
@@ -148,13 +149,15 @@ if(this.type == "person"){
   }
   
   goToDescribe(JobId){
-    this.id=this.user.personID
-    this.id=JSON.parse(JSON.stringify(this.id))
+
     if(this.type == "person"){
+      this.id=this.user.personID
+      this.id=JSON.parse(JSON.stringify(this.id))
       this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
 
     }
     else{
+      this.id= this.user.company_id
       this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
 
 

@@ -2,5 +2,13 @@ des{
     padding-right: 70%;
 }
 .mat-card{
-    left: 200px;
+    left: 25%;
+}
+.container1{
+    
+    width:100%
+}
+.registerbox{
+    left: 2%;
+    width: 67%
 }
