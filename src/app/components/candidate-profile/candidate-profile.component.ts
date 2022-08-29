@@ -48,7 +48,7 @@ type;
         this.profileDetails.companyPhone=this.router.getCurrentNavigation().extras.state.example.companyPhone
         this.profileDetails.companyFax=this.router.getCurrentNavigation().extras.state.example.companyFax
         this.profileDetails.companyTax=this.router.getCurrentNavigation().extras.state.example.companyTax
-        this.profileDetails.companyDescription=this.router.getCurrentNavigation().extras.state.example.companyDescription
+        this.profileDetails.compdescription=this.router.getCurrentNavigation().extras.state.example.companyDescription
       }
       // this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.personEmail
       this.profileDetails.field = this.router.getCurrentNavigation().extras.state.example.personField
@@ -88,7 +88,7 @@ update(){
   this.profileDetails.intrests=this.updatedform.get('intrest').value
   this.profileDetails.studyDegree=this.updatedform.get('studyDegree').value
   this.profileDetails.gender=this.updatedform.get('gender').value
-  this.profileDetails.description=this.updatedform.get('canddescription').value
+  this.profileDetails.canddescription=this.updatedform.get('canddescription').value
 
   // this.updatedform .value['dateOfBirth']= this.datePipe.transform( this.updatedform .value['dateOfBirth'],"dd-MM-yyyy")
 
@@ -114,7 +114,7 @@ update(){
 else{
 
   this.profileDetails.city=this.updatedform.get('city').value
-  this.profileDetails.companyDescription= this.updatedform.get('compdescription').value
+  this.profileDetails.compdescription= this.updatedform.get('compdescription').value
   this.profileDetails.companyName = this.updatedform.get('companyName').value
   this.para=this.profileDetails;
   console.log("=>+>+.+>+>>+>+>>+.",this.profileDetails)
@@ -168,7 +168,7 @@ else{
 
 
   account(){
-    this.router.navigate(['CandidateProfileComponent']);
+    this.router.navigate(['CandidateProfile']);
   }
   home(){
     const httpOptions = {

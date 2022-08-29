@@ -26,7 +26,7 @@ public x: any;
   form: FormGroup = new FormGroup({});
   loginForm = new FormGroup({
 
-    userName: new FormControl('bisan', [Validators.required]),
+    userName: new FormControl('tartir', [Validators.required]),
     myPassword: new FormControl('123', [Validators.required]),
   })
   submit(){
@@ -42,7 +42,7 @@ public x: any;
 
 
     if(res!=1){
-      if(res.type == "person"){
+      if(res.type){
       this.obj = {
         gender: res.gender,
         city:  res.city.cityName,

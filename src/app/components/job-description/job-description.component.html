@@ -1,3 +1,22 @@
+
+<div>
+  <mat-toolbar class="app-header"  height="60">
+    <div><h1 id="LogoName">BICHANCE</h1></div>
+    <span class="nav-tool-items">
+      <a mat-button id="headerLoginbtn" routerLink="../login" routerLinkActive="active">Log Out</a>
+  
+    </span>
+    
+  </mat-toolbar>
+<div style="margin-top: 90px;">
+  <router-outlet></router-outlet>
+
+</div>
+
+</div>
+
+
+
 <div class="registerbox"  >
     <div class="container1" >
       <div *ngFor="let item of jobDes " fxfill>

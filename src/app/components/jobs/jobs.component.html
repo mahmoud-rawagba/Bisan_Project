@@ -35,6 +35,10 @@
           <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button (click)="account()" >
           Account Profile
           </button>
+          <br>
+          <button *ngIf="type" class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="JobList()">
+            Applied Jobs
+          </button>
       </mat-drawer>
       <BR>
         <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
@@ -42,6 +46,22 @@
         </button>
 
         <div class="fa-3x" *ngIf="!type">
+
+          <div class="container-fluid">
+       
+            <div class="row">
+         
+              <div class="col-md-4">
+              
+              </div>
+
+              <div class="col-md-4">
+               
+          <h1 style="color:#790100;font-size: larger;">{{user.companyName}}</h1>
+              </div>
+            </div></div>
+
+
           <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
            <mat-icon   class="Material-icon">add</mat-icon>
          </button>
@@ -94,24 +114,93 @@
       </mat-form>
 
     <mat-card *ngFor="let job of jobs" style=" cursor:pointer;"  (click)="goToDescribe(job.jobId)" fxfill>
+      <div  *ngIf="type">
       <mat-card-header fxfill >
        <mat-card-title fxfill  >
-        <div  fxfill style=" cursor:pointer;">
+        
          <!-- <h2>{{ item.header }}</h2> -->
+        
          <label style=" cursor:pointer;" style="font-size: 20px;">  {{job.companyName}}</label>
-         <br style=" cursor:pointer;">
-         &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;
-         <Label style=" cursor:pointer;" style="font-size: 12px;">   City: {{ job.cityName}}</Label>
-         &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
-         <label style=" cursor:pointer;" style="font-size: 12px;">Job Title: {{job.jobTitle}}  </label> 
-         <br style=" cursor:pointer;">
-         <label style=" cursor:pointer;" style="font-size: 16px;">Field </label> 
-         <br style=" cursor:pointer;">
-         <label style=" cursor:pointer;" style="font-size: 12px;"> {{job.jobField}}  </label> 
-        </div>
-       </mat-card-title>
+        
+         <!-- <br style=" cursor:pointer;"> -->
+        
+         <!-- &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;	&nbsp; -->
+        
+       
+         <!-- <Label style=" cursor:pointer;" style="font-size: 12px;" *ngIf="!type">   City: {{ job.companyID.cities.cityName}}</Label> -->
+         <!-- &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp; -->
+        
+        
+      </mat-card-title>
  
-     </mat-card-header>
+    </mat-card-header>
+     </div>
+
+    <div class="main-content" *ngIf="type">
+      <div class="container-fluid">
+       
+          <div class="row">
+            <div class="col-md-4">
+     <label style=" cursor:pointer;" style="font-size: 16px;">Job Title: {{job.jobTitle}}  </label> 
+            </div>
+            
+           
+            <div class="col-md-4">
+    
+     <label style=" cursor:pointer;" style="font-size: 16px;">Field: {{job.jobField}} </label> 
+    </div>
+    <div class="col-md-4">
+
+      <Label style=" cursor:pointer;" style="font-size: 16px;">   City: {{ job.cityName}}</Label>
+     </div>
+          </div>
+          <!-- <div class="row">
+
+            <div class="col-md-3">
+              <button mat-raised-button fxFill id="submitBtn" class="submitbtn" (click)="goToDescribe(job.jobId)" style="width: 200px;">See Description</button>
+            </div>
+
+          </div> -->
+
+        </div>
+      </div>
+
+        <div class="main-content" *ngIf="!type">
+          <div class="container-fluid">
+           
+              <div class="row">
+                <div class="col-md-4">
+         <label style=" cursor:pointer;" style="font-size: 16px;">Job Title: {{job.jobTitle}}  </label> 
+                </div>
+                <!-- <div class="col-md-4"> &nbsp;	&nbsp;	&nbsp;	&nbsp;</div> -->
+               
+                <div class="col-md-4">
+         <!-- &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp; -->
+         <label style=" cursor:pointer;" style="font-size: 16px;">Field: {{job.jobField}} </label> 
+        </div>
+        <div class="col-md-4">
+          <!-- &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp; -->
+          <label style=" cursor:pointer;" style="font-size: 16px;">Published Date: {{job. jobStartDate}} </label> 
+         </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label style=" cursor:pointer;" style="font-size: 16px;">Job Time: {{job.jobTime}} </label> 
+                </div>
+                <!-- <div class="col-md-4">
+                  &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+                </div> -->
+                <div class="col-md-4">
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="goToDescribe(job.jobId)" >See Description</button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        
+       
+
 
    </mat-card>
 
