@@ -53,6 +53,7 @@ public x: any;
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
       this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginForm.value } });
+      console.log("userInfo",res)
       
      
       }
