@@ -8,6 +8,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { JobDescriptionComponent} from './components/job-description/job-description.component'
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
+import {AppliedJobsComponent} from './components/applied-jobs/applied-jobs.component'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -15,10 +16,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'ForgotPassword', component: ForgotPasswordComponent },
   { path: 'jobs', component: JobsComponent },
-  { path: 'JobDescriptionComponent', component:JobDescriptionComponent},
-  { path: 'CandidateProfileComponent', component:CandidateProfileComponent},
-  { path: 'CompanyProfileComponent', component:CompanyProfileComponent },
-  {path: 'AddJob', component:AddJobComponent}
+  { path: 'JobDescription', component:JobDescriptionComponent},
+  { path: 'CandidateProfile', component:CandidateProfileComponent},
+  { path: 'CompanyProfile', component:CompanyProfileComponent },
+  {path: 'AddJob', component:AddJobComponent},
+  {path: 'AppliedJobs', component:AppliedJobsComponent},
 
 ];
 

@@ -1,0 +1,39 @@
+.application:hover{
+    background-color: lightgrey;
+    color: #790100;
+}
+mat-form-field:hover{
+ background-color:darkgrey;
+   
+
+    color: #790100;
+}
+.example-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
+  mat-drawer-container{
+    min-height: 800px;
+    width: 100%;
+  
+}
+button:hover {
+  background-color: #790100;
+  color: white;
+}
+.button1{
+  background-color: white; width:200px;color: #790100;border-radius: 0%;
+}
+  

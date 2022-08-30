@@ -1,0 +1,62 @@
+<form>
+    <mat-form fxfill>
+    <mat-drawer-container fxfill>
+<mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;">
+
+    <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+
+    </button>
+    <br>
+
+    <button class="button1" (click)="showFiller = !showFiller" mat-raised-button (click)="drawer.toggle()">
+      Close The Bar
+
+    </button>
+    <BR>
+      <button  class="button1"  (click)="showFiller = !showFiller" mat-raised-button (click)="home()">
+        Home
+      </button>
+      <BR>
+
+  </mat-drawer>
+  <BR>
+
+
+
+      <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+          <mat-icon >menu</mat-icon>
+        </button>
+
+
+
+<mat-card  fxfill>
+    <mat-card-header fxfill >
+    
+  
+<mat-card-title fxfill  >
+    <h1> Jobs You Applied For:</h1>
+   <div class="application" fxfill *ngFor="let app of apps"  fxfill>
+    <br>
+    <br>
+    <label style=" cursor:pointer;" style="font-size: 20px;"> Company: {{app.companyName}}  </label> 
+    &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;
+    <label style=" cursor:pointer;" style="font-size: 12px;"> Applied In: {{app.date}}  </label> 
+   
+    <div *ngIf="app.status">
+        <div>
+      <label  style="font-size: 20px;color: #790100;"> Respone: {{app.status}} </label>
+    </div>
+    </div>
+    <div *ngIf="!app.status">
+        <label  style="font-size: 20px;color: #790100;"> Waiting For Response</label>
+
+    </div>
+
+
+   </div>
+  </mat-card-title>
+    </mat-card-header>
+</mat-card>
+</mat-drawer-container>
+    </mat-form>
+</form>

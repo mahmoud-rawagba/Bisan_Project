@@ -1,4 +1,24 @@
 
+<div>
+  <mat-toolbar class="app-header"  height="60">
+    <div><h1 id="LogoName">BICHANCE</h1></div>
+    <span class="nav-tool-items">
+      <a mat-button id="headerLoginbtn" routerLink="../login" routerLinkActive="active">Log Out</a>
+  
+    </span>
+    
+  </mat-toolbar>
+<div style="margin-top: 90px;">
+  <router-outlet></router-outlet>
+
+</div>
+
+</div>
+
+
+
+
+
 <mat-form  fxfill>
     <mat-drawer-container fxfill>
     
@@ -18,9 +38,7 @@
               <mat-icon >home</mat-icon>
             </button>
             <BR>
-            <button (click)="showFiller = !showFiller" mat-raised-button (click)="account()">
-              <mat-icon >account_circle</mat-icon>
-            </button>
+
         </mat-drawer>
         <BR>
     

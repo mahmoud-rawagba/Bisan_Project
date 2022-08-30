@@ -26,7 +26,7 @@ public x: any;
   form: FormGroup = new FormGroup({});
   loginForm = new FormGroup({
 
-    userName: new FormControl('bisan', [Validators.required]),
+    userName: new FormControl('tartir', [Validators.required]),
     myPassword: new FormControl('123', [Validators.required]),
   })
   submit(){

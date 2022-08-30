@@ -105,6 +105,7 @@ if(this.type == "person"){
     })
 
     .catch(console.log);
+    console.log(">>>>>>>>>>>>>>>>>>>>>><<<<<<<><><><><>",this.jobs)
 
 
 
@@ -155,12 +156,12 @@ if(this.type == "person"){
     if(this.type == "person"){
       this.id=this.user.personID
       this.id=JSON.parse(JSON.stringify(this.id))
-      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
+      this.router.navigate(['JobDescription'], {state : {example:JobId, type:this.type, id:this.id} });
 
     }
     else{
       this.id= this.user.company_id
-      this.router.navigate(['JobDescriptionComponent'], {state : {example:JobId, type:this.type, id:this.id} });
+      this.router.navigate(['JobDescription'], {state : {example:JobId, type:this.type, id:this.id} });
 
 
     }
@@ -169,7 +170,7 @@ if(this.type == "person"){
   }
   account(){
 
-   this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.user, loginF: this.loginF } });
+   this.router.navigate(['CandidateProfile'],{ state: {example :this.user, loginF: this.loginF } });
 
   }
   updateFilter(){
@@ -196,6 +197,10 @@ if(this.type == "person"){
     this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
 
   }
+   JobList(){
+    this.router.navigate(['AppliedJobs'], {state : {id:this.user.personID}});
+
+   }
 
 
 

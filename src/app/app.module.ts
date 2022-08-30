@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
+import { AppliedJobsComponent } from './components/applied-jobs/applied-jobs.component';
 // import { NgHttpLoaderModule } from 'ng-http-loader';
 
 
@@ -51,6 +52,7 @@ import { AddJobComponent } from './components/add-job/add-job.component';
     JobDescriptionComponent,
     CandidateProfileComponent,
     AddJobComponent,
+    AppliedJobsComponent,
     
   ],
   imports: [

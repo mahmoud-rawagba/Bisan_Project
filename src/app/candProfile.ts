@@ -8,13 +8,14 @@ export interface Iprofile{
     personPhone: string;
     dateOfBirth: string;
     gender: string;
-    description: string;
+    canddescription: string;
     intrests: string;
     picPath:string;
     type:string;
-    cities:{
-cityName: string
-    };
+
+cities:{
+    cityName: string
+        };
 
 
     companyName:string;
@@ -25,6 +26,6 @@ cityName: string
     companyPhone: number;
     companyTax: number;
     address: string;
-    companyDescription:string;
+    compdescription:string;
     
 }

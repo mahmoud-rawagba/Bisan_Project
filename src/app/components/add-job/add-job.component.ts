@@ -11,7 +11,7 @@ import { CandidateService } from 'src/app/service/candidate.service';
   styleUrls: ['./add-job.component.css']
 })
 export class AddJobComponent implements OnInit {
-
+  loginF:{};
   constructor(private ngZone: NgZone, 
     private http: HttpClient,
     private router: Router,
@@ -21,6 +21,7 @@ export class AddJobComponent implements OnInit {
 
   ) { 
     this.companyID=this.router.getCurrentNavigation().extras.state.example
+    this.loginF =  this.router.getCurrentNavigation().extras.state.loginF
 
   }
 
@@ -47,12 +48,40 @@ export class AddJobComponent implements OnInit {
     jobTime: new FormControl(null)
 
 })
-  account(){
-    this.router.navigate(['CandidateProfileComponent']);
-  }
+
+obj:{}
+para:{}
   home(){
-    this.router.navigate(['jobs']);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type': 'application/json',
+      })
+    };
+
+
+    this.http.post<any>('http://10.10.32.82:8080/login', this.loginF, httpOptions).subscribe(res =>{
+      if(res!=null){
+        if(res.type == "person"){
+          this.obj = {
+            gender: res.gender,
+            city:  res.city.cityName,
+            studyDegree:  res.studyDegree,
+            personField: res.personField
+          }
+          this.para=JSON.parse(JSON.stringify(this.obj)),
+   
+          this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginF} });
+        }
+
+      }
+      else{
+      
+        this.router.navigate(['jobs'], { state: {userInfo:res} });
+      }
+    })
   }
+  
   addJob(){
      this.JobForm.value['companyID'] =this.companyID;
    
