@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -13,6 +14,13 @@ import { Router } from '@angular/router';
 export class CandidateProfileComponent implements OnInit {
   profileDetails: Iprofile;
 loginF:{};
+today: Date = new Date();
+pipe = new DatePipe('en-US');
+todayWithPipe = null;
+Gender: any = ['Male','Female'];
+Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
+City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
+type;
 
 
 
@@ -21,10 +29,32 @@ loginF:{};
     private router: Router,
     private fb: FormBuilder,
     private acc: CandidateService,
+    private datePipe: DatePipe
 
 
     ) {
       this.profileDetails=this.router.getCurrentNavigation().extras.state.example
+      this.type = this.router.getCurrentNavigation().extras.state.example.type
+      if (this.type){
+        this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.personEmail
+
+      }
+      else{
+        this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.companyEmail
+        this.profileDetails.userName=this.router.getCurrentNavigation().extras.state.example.companyUserName
+        this.profileDetails.company_id= this.router.getCurrentNavigation().extras.state.example.company_id
+        this.profileDetails.address=this.router.getCurrentNavigation().extras.state.example.address
+        this.profileDetails.cities.cityName=this.router.getCurrentNavigation().extras.state.example.cities.cityName
+        this.profileDetails.companyPhone=this.router.getCurrentNavigation().extras.state.example.companyPhone
+        this.profileDetails.companyFax=this.router.getCurrentNavigation().extras.state.example.companyFax
+        this.profileDetails.companyTax=this.router.getCurrentNavigation().extras.state.example.companyTax
+        this.profileDetails.companyDescription=this.router.getCurrentNavigation().extras.state.example.companyDescription
+      }
+      // this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.personEmail
+      this.profileDetails.field = this.router.getCurrentNavigation().extras.state.example.personField
+      this.updatedform.value['field']= this.profileDetails.field
+      this.updatedform.value['dateOfBirth']= this.profileDetails.dateOfBirth
+      console.log(">>>>>>>>>>>>>>>>>>>>>===",this.profileDetails)
       this.loginF =  this.router.getCurrentNavigation().extras.state.loginF
       //1--------the names of fields are not the same between cand. and comp. objects until then used if statement to solve an error this should be temp.
       if(this.router.getCurrentNavigation().extras.state.example.type == "person"){
@@ -40,36 +70,36 @@ loginF:{};
   }
 
 update(){
-  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.updatedform.value);
+  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails);
   this.profileDetails.fullName=this.updatedform.get('fullName').value
   this.profileDetails.city=this.updatedform.get('city').value
-  this.profileDetails.personField=this.updatedform.get('field').value
+  this.profileDetails.field=this.updatedform.get('field').value
   this.profileDetails.intrests=this.updatedform.get('intrest').value
   this.profileDetails.studyDegree=this.updatedform.get('studyDegree').value
   this.profileDetails.gender=this.updatedform.get('gender').value
   this.profileDetails.description=this.updatedform.get('canddescription').value
   this.profileDetails.dateOfBirth=this.updatedform.get('dateOfBirth').value
-  this.profileDetails.dateOfBirth= JSON.parse(JSON.stringify(this.profileDetails.dateOfBirth))
-  this.para=this.profileDetails
+  // this.profileDetails=this.updatedform.get('picPath').value
 
   console.log("this is param after update>>>>>>>>.",this.para)
-    this.http.put('http://10.10.32.82:8080/Person/update', this.para).subscribe(response =>{
-      console.log(response)
+    this.http.post('http://10.10.32.82:8080/Person/update', {
+      params:this.para,
+      observe: 'response'
     })
 }
 
 
   form: FormGroup = new FormGroup({});
   updatedform = new FormGroup({
-    email: new FormControl('',[Validators.required, Validators.email]),
+    email: new FormControl(''),
 
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-    passwordConfirm: new FormControl(null, [Validators.required]),
+    username: new FormControl(null),
+    password: new FormControl(null),
+    passwordConfirm: new FormControl(null),
     phone: new FormControl(null),
 
 
-    fullName: new FormControl('', [Validators.required]),
+    fullName: new FormControl(''),
 
     city: new FormControl(),
     field: new FormControl(),
@@ -79,6 +109,12 @@ update(){
     canddescription : new FormControl(),
     dateOfBirth: new FormControl(),
     picPath: new FormControl(),
+    companyName: new FormControl(),
+    fax: new FormControl(),
+    tax: new FormControl(),
+    compdescription: new FormControl(),
+    address: new FormControl(),
+    // companyEmail: new FormControl(),
 
 })
 
@@ -101,6 +137,7 @@ update(){
         'Content-Type': 'application/json',
       })
     };
+
 
     this.http.post<any>('http://10.10.32.82:8080/login', this.loginF, httpOptions).subscribe(res =>{
       if(res!=null){
