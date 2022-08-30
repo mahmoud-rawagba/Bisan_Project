@@ -40,7 +40,7 @@ loginF:{};
   }
 
 update(){
-  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails);
+  console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.updatedform.value);
   this.profileDetails.fullName=this.updatedform.get('fullName').value
   this.profileDetails.city=this.updatedform.get('city').value
   this.profileDetails.personField=this.updatedform.get('field').value
@@ -49,13 +49,12 @@ update(){
   this.profileDetails.gender=this.updatedform.get('gender').value
   this.profileDetails.description=this.updatedform.get('canddescription').value
   this.profileDetails.dateOfBirth=this.updatedform.get('dateOfBirth').value
-  // this.profileDetails=this.updatedform.get('picPath').value
+  this.profileDetails.dateOfBirth= JSON.parse(JSON.stringify(this.profileDetails.dateOfBirth))
+  this.para=this.profileDetails
 
-  this.para=this.profileDetails;
   console.log("this is param after update>>>>>>>>.",this.para)
-    this.http.post('http://10.10.32.82:8080/Person/update', {
-      params:this.para,
-      observe: 'response'
+    this.http.put('http://10.10.32.82:8080/Person/update', this.para).subscribe(response =>{
+      console.log(response)
     })
 }
 
@@ -113,13 +112,13 @@ update(){
             personField: res.personField
           }
           this.para=JSON.parse(JSON.stringify(this.obj)),
-   
+
           this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginF} });
         }
 
       }
       else{
-      
+
         this.router.navigate(['jobs'], { state: {userInfo:res} });
       }
     })
