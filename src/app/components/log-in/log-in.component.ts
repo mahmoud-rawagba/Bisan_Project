@@ -42,7 +42,7 @@ public x: any;
 
 
     if(res!=1){
-      if(res.type == "person"){
+      if(res.type){
       this.obj = {
         gender: res.gender,
         city:  res.city.cityName,
@@ -53,24 +53,33 @@ public x: any;
       this.para=JSON.parse(JSON.stringify(this.obj)),
       this.type = res.type
       this.router.navigate(['jobs'], { state: {example :this.para,userInfo:res, loginF:this.loginForm.value } });
-      console.log("userInfo",res)
-      
-     
+      console.log("userInfo",res, JSON.stringify(res))
+      sessionStorage.setItem('userInfo', JSON.stringify(res))
+      sessionStorage.setItem('example', JSON.stringify(this.para))
+      sessionStorage.setItem('loginF', JSON.stringify(this.loginForm.value))
+
+
+
+
       }
 
-    
 
-    
+
+
     else{
+      console.log(res)
       console.log("No Companies Yet!")
-      this.router.navigate(['jobs'], { state: {userInfo:res} });
+      this.router.navigate(['jobs']);
+      sessionStorage.setItem('userInfo', JSON.stringify(res))
+      sessionStorage.setItem('example', JSON.stringify(this.para))
+      sessionStorage.setItem('loginF', JSON.stringify(this.loginForm.value))
     }
   }else{
     window.alert("user not found Or Wrong Password");
   }
 
   })
- 
+
 
   }
 

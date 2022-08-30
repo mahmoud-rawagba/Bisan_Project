@@ -39,7 +39,7 @@ public items=[]
   WorkingHours: any=['FullTime', 'PartTime',"Any"];
   Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
   Field: any = ['CS','Civil Engineer', 'QA','FrontEnd','Other']
- 
+
   public companyName: any;
 
 
@@ -50,22 +50,24 @@ public items=[]
   private router: Router) {
 
 
-    this.type =this.router.getCurrentNavigation().extras.state.userInfo.type
-    this.loginF= this.router.getCurrentNavigation().extras.state.loginF
+    // this.type =this.router.getCurrentNavigation().extras.state.userInfo.type
+    // this.loginF= this.router.getCurrentNavigation().extras.state.loginF
 
-    this.user=this.router.getCurrentNavigation().extras.state.userInfo
+    // this.user=this.router.getCurrentNavigation().extras.state.userInfo
+
+    this.user = JSON.parse(sessionStorage.getItem('userInfo'));
+    this.type = this.user.type;
     if ( this.type == "person"){
-    
+
       //this.param=this.router.getCurrentNavigation().extras.state.example
-      this.param = this.router.getCurrentNavigation().extras.state.example
+      this.param = JSON.parse(sessionStorage.getItem('example'));
       console.log(">>>>>>>>>",this.param)
 
-     
-     
+
     }
 
 
-  
+
    }
 
 
@@ -81,17 +83,17 @@ if(this.type == "person"){
 
       this.jobs=response.body
 
- 
+
     })
-   
+
     .catch(console.log);
 
-    
+
 
   }
   else{
     this.http.get('http://10.10.32.82:8080/Company/'+this.user.company_id+'/showJobs', {
-  
+
       observe: 'response'
     })
     .toPromise()
@@ -99,12 +101,12 @@ if(this.type == "person"){
 
       this.jobs= response.body
 
- 
+
     })
-   
+
     .catch(console.log);
 
-   
+
 
   }
 
@@ -121,13 +123,13 @@ if(this.type == "person"){
   })
 
   filter(){
-    
+
     this.param.city = this.filterForm.get('city').value
     this.param.gender = this.filterForm.get('gender').value
     this.param.studyDegree = this.filterForm.get('studyDegree').value
     this.param.personField= this.filterForm.get('personField').value
     //this.param=JSON.parse(JSON.stringify(this.filterF))
-  
+
 
     this.http.get('http://10.10.32.82:8080/Job/search', {
       params:this.param,
@@ -139,15 +141,15 @@ if(this.type == "person"){
 
       this.jobs= response.body
 
- 
+
     })
-    
-   
+
+
     .catch(console.log);
 
 
   }
-  
+
   goToDescribe(JobId){
 
     if(this.type == "person"){
@@ -162,13 +164,13 @@ if(this.type == "person"){
 
 
     }
-   
-  
+
+
   }
   account(){
 
    this.router.navigate(['CandidateProfileComponent'],{ state: {example :this.user, loginF: this.loginF } });
-    
+
   }
   updateFilter(){
     this.param=this.filterForm;
@@ -182,19 +184,19 @@ if(this.type == "person"){
     .then(response => {
       this.jobs= response.body
 
- 
+
     })
-    
-   
+
+
     .catch(console.log);
 
   }
   addJob(){
-    
+
     this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
 
   }
 
-  
+
 
 }

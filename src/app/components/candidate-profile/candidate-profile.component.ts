@@ -6,6 +6,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
@@ -136,6 +137,7 @@ update(){
         'Access-Control-Allow-Origin':'*',
         'Content-Type': 'application/json',
       })
+
     };
 
 
@@ -160,6 +162,12 @@ update(){
       }
     })
   }
+
+  //  const lastNav = this.router.previousNavigation();
+
+  //   const previousRoute = this.lastNav.previousNavigation;
+
+  //    router.navigateByUrl(previousRoute);
 }
 
 
