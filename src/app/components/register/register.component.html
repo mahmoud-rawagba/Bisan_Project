@@ -19,15 +19,22 @@
       <!-- <mat-card-content> -->
 
         
-        <form [formGroup]="registerForm" (ngSubmit)="register()" >
+        <form [formGroup]="registerForm" >
 
 
           <mat-form-field  *ngIf="company">
           
             <input id="companyNameInput" matInput placeholder="Company Name" formControlName="companyName" name="companyName">
-          
           </mat-form-field>
-          <mat-form-field >
+          <mat-form-field  *ngIf="company">
+            <input id="userNameInput" matInput placeholder="User Name" formControlName="userName" name="username">
+            <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+               with the .touched check we only display the hints if the input was touched by the users -->
+            <mat-error *ngIf="this.registerForm.get('username')?.touched && this.registerForm.get('username')?.hasError('required')">
+              UserName is required</mat-error>
+              </mat-form-field>
+         
+          <mat-form-field *ngIf="candidate">
           
             <input id="userNameInput" matInput placeholder="User Name" formControlName="username" name="username">
             <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
@@ -78,7 +85,7 @@
                 
                       <mat-form-field *ngIf="candidate">
                     
-                        <input id="fullNameInput" matInput placeholder="First Name" formControlName="fullName" name="fullName">
+                        <input id="fullNameInput" matInput placeholder="Full Name" formControlName="fullName" name="fullName">
                         <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
                           with the .touched check we only display the hints if the input was touched by the users -->
                         <mat-error *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('required')">

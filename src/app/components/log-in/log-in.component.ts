@@ -4,12 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CandidateService} from 'src/app/service/candidate.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
+ 
    obj = {};
    para;
    person={};

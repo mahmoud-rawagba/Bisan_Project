@@ -88,7 +88,11 @@ para:{}
   }
 
 
+  account(){
 
+    this.router.navigate(['CandidateProfile'],{ state: {example :JSON.parse(sessionStorage.getItem('userInfo')), loginF: this.loginF } });
+
+  }
 
 
 

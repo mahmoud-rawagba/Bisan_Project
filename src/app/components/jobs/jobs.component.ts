@@ -29,16 +29,18 @@ export class JobsComponent implements OnInit {
   id;
   param;
   loginF:{};
+  filterOn=false;
    jobs={
 
    };
+   bar=false
   showFiller = false;
 public items=[]
   City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah','Any'];
   Gender: any = ['Male','Female','Any'];
   WorkingHours: any=['FullTime', 'PartTime',"Any"];
   Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
-  Field: any = ['CS','Civil Engineer', 'QA','FrontEnd','Other']
+  Field: any = ['cs','Civil Engineer', 'QA','frontend','Other']
 
   public companyName: any;
 
@@ -124,6 +126,7 @@ if(this.type == "person"){
   })
 
   filter(){
+    this.filterOn=true
 
     this.param.city = this.filterForm.get('city').value
     this.param.gender = this.filterForm.get('gender').value

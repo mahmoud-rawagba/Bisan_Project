@@ -44,6 +44,15 @@ mat-form-field:hover{
   .button1{
     background-color: white; width:200px;color: #790100;border-radius: 0%;
   }
+  .main-content{
+    max-width:1000px
+  }
+  mat-drawer-container{
+    max-width:1000px;
+    left: 15%;
+   
+  }
+
 
 
 

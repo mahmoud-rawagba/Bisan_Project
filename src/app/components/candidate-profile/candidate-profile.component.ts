@@ -22,6 +22,7 @@ Gender: any = ['Male','Female'];
 Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
 City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
 type;
+user:Iprofile
 
 
 
@@ -34,6 +35,8 @@ type;
 
 
     ) {
+      this.user = JSON.parse(sessionStorage.getItem('userInfo'));
+      this.type = this.user.type;
       this.profileDetails=this.router.getCurrentNavigation().extras.state.example
       this.type = this.router.getCurrentNavigation().extras.state.example.type
       if (this.type){
@@ -202,6 +205,16 @@ else{
       }
     })
   }
+  addJob(){
+
+    
+    this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
+
+  }
+   JobList(){
+    this.router.navigate(['AppliedJobs'], {state : {id:this.user.personID}});
+
+   }
 }
 
 

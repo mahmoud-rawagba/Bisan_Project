@@ -13,6 +13,8 @@ export interface Iprofile{
     picPath:string;
     type:string;
 
+
+
 cities:{
     cityName: string
         };

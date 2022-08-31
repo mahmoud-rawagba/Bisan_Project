@@ -37,6 +37,7 @@ import { DatePipe } from '@angular/common';
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
 import { AppliedJobsComponent } from './components/applied-jobs/applied-jobs.component';
+// import { CandidateProfileForCompanyComponent } from './components/candidate-profile-for-company/candidate-profile-for-company.component';
 // import { NgHttpLoaderModule } from 'ng-http-loader';
 
 
@@ -53,6 +54,7 @@ import { AppliedJobsComponent } from './components/applied-jobs/applied-jobs.com
     CandidateProfileComponent,
     AddJobComponent,
     AppliedJobsComponent,
+    // CandidateProfileForCompanyComponent,
     
   ],
   imports: [

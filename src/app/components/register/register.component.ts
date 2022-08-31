@@ -95,7 +95,8 @@ export class RegisterComponent implements OnInit {
       registerForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
         companyName: new FormControl(null),
-        username: new FormControl(null, [Validators.required]),
+        userName: new FormControl(null, [Validators.required]),
+        username:new FormControl(null, [Validators.required]),
         password: new FormControl(null, [Validators.required]),
         passwordConfirm: new FormControl(null, [Validators.required]),
         phone: new FormControl(null),
@@ -147,6 +148,7 @@ export class RegisterComponent implements OnInit {
 
     }
  submit(){
+ 
   this.registerForm.value['intrest'] = this.Intrests.join();
   this.registerForm.value['dateOfBirth']= this.datePipe.transform( this.registerForm.value['dateOfBirth'],"dd-MM-yyyy")
 
@@ -160,6 +162,7 @@ export class RegisterComponent implements OnInit {
   }
   console.log(this.selected);
   if(this.selected=="company"){
+    console.log("here!!!!!!!")
     this.http.post<any>('http://10.10.32.82:8080/Company/register', this.registerForm.value, httpOptions).subscribe(res =>{
       console.log("hahahahahaha");
       console.log(res)

@@ -11,6 +11,7 @@ import { CandidateService } from 'src/app/service/candidate.service';
   styleUrls: ['./add-job.component.css']
 })
 export class AddJobComponent implements OnInit {
+  showFiller=false
   loginF:{};
   constructor(private ngZone: NgZone, 
     private http: HttpClient,
@@ -27,9 +28,9 @@ export class AddJobComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Gender: any = ['Male','Female'];
+  Gender: any = ['Male','Female','any'];
   Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
-  showFiller = false;
+
   WorkingHours: any=['FullTime', 'PartTime'];
   companyID;
 
@@ -104,5 +105,11 @@ para:{}
       }
     })
   }
+  account(){
+
+    this.router.navigate(['CandidateProfile'],{ state: {example :JSON.parse(sessionStorage.getItem('userInfo')), loginF: this.loginF } });
+
+  }
+
 
 }

@@ -21,16 +21,23 @@
 <mat-form >
   <mat-drawer-container >
   
-      <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;">
+      <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;" opened>
        
         <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
          
         </button>
-        <br>
-        <button class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="drawer.toggle()">
-          Close the Bar
-        </button>
+        &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp; 
+        <mat-icon (click)="showFiller = !showFiller" mat-flat-button  (click)="drawer.toggle()"  style=" cursor:pointer;">
+          close
+        </mat-icon>
         <BR>
+          <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button   style="color:white;
+   
+
+   background-color: #790100;">
+            Home
+            </button>
+            <br>
       
           <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button (click)="account()" >
           Account Profile
@@ -38,6 +45,10 @@
           <br>
           <button *ngIf="type" class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="JobList()">
             Applied Jobs
+          </button>
+      
+          <button *ngIf="!type" class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="addJob()">
+            Add A Job
           </button>
       </mat-drawer>
       <BR>
@@ -62,11 +73,11 @@
             </div></div>
 
 
-          <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
+          <!-- <button (click)="addJob()" mat-raised-button (click)="drawer.toggle()">
            <mat-icon   class="Material-icon">add</mat-icon>
-         </button>
+         </button> -->
 
-          <h1>published jobs</h1>
+          <h1>published jobs:</h1>
 
 
        </div>
@@ -151,7 +162,8 @@
     </div>
     <div class="col-md-4">
 
-      <Label style=" cursor:pointer;" style="font-size: 16px;">   City: {{ job.cityName}}</Label>
+      <Label style=" cursor:pointer;" style="font-size: 16px;" *ngIf="!filterOn">   City: {{ job.cityName}}</Label>
+      <Label style=" cursor:pointer;" style="font-size: 16px;" *ngIf="filterOn">   City: {{ job.companyID?.cities.cityName}}</Label>
      </div>
           </div>
           <!-- <div class="row">

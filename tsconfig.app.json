@@ -4,7 +4,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "lib": ["es5", "es6", "dom"],
-    "types": []
+    "types": [],
   },
   "files": [
     "src/main.ts",

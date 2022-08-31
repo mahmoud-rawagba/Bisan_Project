@@ -14,12 +14,49 @@
 </div>
 
 </div>
+<mat-form >
+  <mat-drawer-container style="border: #790100">
+  
+      <mat-drawer #drawer class="example-sidenav" mode="side" fxFILL  style="background-color: grey;" opened>
+       
+        <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+         
+        </button>
+        &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp; 
+        <mat-icon (click)="showFiller = !showFiller" mat-flat-button  (click)="drawer.toggle()"  style=" cursor:pointer;">
+          close
+        </mat-icon>
+        <BR>
+          <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button  >
+            Home
+            </button>
+            <br>
+      
+          <button class="button1"  (click)="showFiller = !showFiller" mat-flat-button (click)="account()" >
+          Account Profile
+          </button>
+          <br>
+          <button *ngIf="type" class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="JobList()">
+            Applied Jobs
+          </button>
+                      
+      <button *ngIf="!type" class="button1" (click)="showFiller = !showFiller" mat-flat-button  (click)="addJob()">
+        Add A Job
+      </button>
+      </mat-drawer>
+      <BR>
+        <button style="position: relative;left:90%;" mat-button (click)="drawer.toggle()">
+          <mat-icon >menu</mat-icon>
+        </button>
 
-
+      
 
 <div class="registerbox"  >
+
     <div class="container1" >
+     
       <div *ngFor="let item of jobDes " fxfill>
+       
         <mat-card *ngIf="item.jobId">
             <mat-card-header>
              <mat-card-title style=" cursor:pointer;">
@@ -110,7 +147,8 @@
           
             <mat-card-title fxfill  >
               <h1> Applied Candidates</h1>
-             <div  fxfill *ngFor="let app of apps">
+             <div  fxfill *ngFor="let app of apps" >
+          
             
               <label style=" cursor:pointer;" style="font-size: 20px;"> Candidate:{{app.personName}} </label>
               <br style=" cursor:pointer;">
@@ -131,6 +169,7 @@
               <div *ngIf="app.status">
                 <label  style="font-size: 20px;color: #790100;"> {{app.status}} </label>
               </div>
+              <button (click)="personAccount(app.personID)">see account</button>
 
              </div>
             </mat-card-title>
@@ -138,5 +177,9 @@
           </mat-card-header>
          </mat-card>
 
+    
          </div>
         </div>
+</div>
+  </mat-drawer-container>
+</mat-form>

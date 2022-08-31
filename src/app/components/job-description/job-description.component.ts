@@ -1,3 +1,5 @@
+import { Ilogin } from './../../login';
+import { Iprofile } from './../../candProfile';
 
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -12,6 +14,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./job-description.component.css']
 })
 export class JobDescriptionComponent implements OnInit {
+  showFiller=false
+  loginF:Ilogin
   on;
  send;
  sendS:{}
@@ -30,12 +34,15 @@ export class JobDescriptionComponent implements OnInit {
   id;
 status;
 applied
+user:Iprofile
   constructor(private router:Router, private http:HttpClient) {
     this.type = this.router.getCurrentNavigation().extras.state.type
  
       this.job_id= this.router.getCurrentNavigation().extras.state.example
 
       this.id = this.router.getCurrentNavigation().extras.state.id
+      this.user = JSON.parse(sessionStorage.getItem('userInfo'));
+      this.type = this.user.type;
 
 
 
@@ -160,6 +167,26 @@ applied
   
 
     }
+    addJob(){
+
+    
+      this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
+  
+    }
+     JobList(){
+      this.router.navigate(['AppliedJobs'], {state : {id:this.user.personID}});
+  
+     }
+     account(){
+
+      this.router.navigate(['CandidateProfile'],{ state: {example :this.user, loginF: this.loginF } });
+   
+     }
+     personAccount(personID){
+      this.router.navigate(['CandidateProfileForCompany'],{state: {id:personID}});
+
+     }
+
 
 
 }
