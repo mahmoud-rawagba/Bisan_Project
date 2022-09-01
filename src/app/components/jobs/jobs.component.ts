@@ -22,6 +22,7 @@ import {NgZone} from '@angular/core';
 })
 
 export class JobsComponent implements OnInit {
+  search=false;
   jobsList : Ijobs;
   user: Iprofile;
   filterF: Interfilter;
@@ -126,6 +127,7 @@ if(this.type == "person"){
   })
 
   filter(){
+    this.search=true
     this.filterOn=true
 
     this.param.city = this.filterForm.get('city').value

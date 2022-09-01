@@ -5,8 +5,10 @@ export interface Ijobs{
     companyID:{
         companyName:string;
         cities:{
-    cityName: string
+    cityName: string,
+   
         },
+        
     }
     jobId: number,
     jobDescription: string,

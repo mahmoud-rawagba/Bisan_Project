@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   service: any;
   loc = false;
   fileName = '';
-  selected = 'Company';
+  selected = "Company";
   selectedCity: String;
   company = true;
   candidate = false;
@@ -106,6 +106,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       companyName: new FormControl(null),
       username: new FormControl(null, [Validators.required]),
+      userName: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
       passwordConfirm: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required]),
