@@ -21,7 +21,7 @@ export class JobDescriptionComponent implements OnInit {
 
   jobDes:{
   };
- 
+
   type;
   param:{
     id;
@@ -32,7 +32,7 @@ status;
 applied
   constructor(private router:Router, private http:HttpClient) {
     this.type = this.router.getCurrentNavigation().extras.state.type
- 
+
       this.job_id= this.router.getCurrentNavigation().extras.state.example
 
       this.id = this.router.getCurrentNavigation().extras.state.id
@@ -66,7 +66,7 @@ applied
         this.applied = true
        if( response.body[2] == ""){
     this.status = "Waiting For A Response"
- 
+
        }
        else{
         this.status =response.body[2]
@@ -83,15 +83,15 @@ applied
       else{
         this.applied = false
       }
-  
-  
- 
+
+
+
     })
-   
+
     .catch(console.log);
 
-   
- 
+
+
 
   }
 
@@ -101,32 +101,32 @@ applied
       console.log(this.param)
       if(this.jobDes[1]==false){
         const httpOptions = {
-          headers: new HttpHeaders({ 
+          headers: new HttpHeaders({
             'Access-Control-Allow-Origin':'*',
             'Content-Type': 'application/json',
           })
         };
 
-              
+
         this.http.post<any>('http://10.10.32.82:8080/applyToJob/add', this.param, httpOptions).subscribe(res =>{
 
- 
+
         })
-    
-       
+
+
 
       }
       this.applied = true
       this.status = "Waiting For A Response"
 
-    
+
 
 
     }
     response(value,applicationID){
 
       const httpOptions = {
-        headers: new HttpHeaders({ 
+        headers: new HttpHeaders({
           'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
         })
@@ -140,12 +140,12 @@ applied
       else{
         this.send = "Approved!"
       }
-      const status = this.send 
+      const status = this.send
 
       this.sendS={
         applicationID,
         status
-    
+
       }
       console.log(this.sendS)
 
@@ -157,7 +157,7 @@ applied
       });
 
 
-  
+      this.ngOnInit();
 
     }
 

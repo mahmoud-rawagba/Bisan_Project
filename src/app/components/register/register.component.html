@@ -5,9 +5,9 @@
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
-  
+
     <h3>Select Your type of use</h3>
-    
+
     <mat-button-toggle-group  name="UserType" aria-label="User Type" #type="matButtonToggleGroup" [value]="selected" >
       <mat-button-toggle id="Companybtn" (click)="toggleVisibilityCompany()" name="userType" value="Company">Company</mat-button-toggle >
        <mat-button-toggle id="Candidatebtn" (click)="toggleVisibilityCandidate()"  name="userType" value="Candidate">Candidate</mat-button-toggle>
@@ -15,79 +15,79 @@
     </mat-button-toggle-group>
 
     <!-- <form class="example-form"> -->
-  
+
       <!-- <mat-card-content> -->
 
-        
+
         <form [formGroup]="registerForm" (ngSubmit)="register()" >
 
 
           <mat-form-field  *ngIf="company">
-          
+
             <input id="companyNameInput" matInput placeholder="Company Name" formControlName="companyName" name="companyName">
-          
+
           </mat-form-field>
           <mat-form-field >
-          
+
             <input id="userNameInput" matInput placeholder="User Name" formControlName="username" name="username">
-            <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+            <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email
                with the .touched check we only display the hints if the input was touched by the users -->
             <mat-error *ngIf="this.registerForm.get('username')?.touched && this.registerForm.get('username')?.hasError('required')">
               UserName is required</mat-error>
               </mat-form-field>
               <mat-form-field >
-          
+
                 <input id="emailInput" type="email" matInput placeholder="Email" formControlName="email" name="email">
                 <mat-error id="requiredEmail" *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('required')">
                   Email is required</mat-error>
                 <mat-error id="validEmail" *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('email')">
                   Email must be a valid Email</mat-error>
-            
+
                 </mat-form-field>
-      
-      
+
+
                 <mat-form-field >
                   <input id="PasswordInput" type="password" matInput placeholder="Password" formControlName="password" name="password">
                   <mat-error id="requiredpass"
                     *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('required')">
                     Password is required</mat-error>
                 </mat-form-field>
-      
+
                 <mat-form-field >
                   <input id="confPass" type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
                   <mat-error id="requiredpassConf"
                     *ngIf="this.registerForm.get('passwordConfirm')?.touched && this.registerForm.get('passwordConfirm')?.hasError('required')">
                     Password Confirmation is required</mat-error>
                   </mat-form-field>
-                  
+
                     <mat-error id="passNotMatch"
                     *ngIf="this.registerForm.get('passwordConfirm')?.dirty && this.registerForm.hasError('passwordsNotMatching')">
                      Password does not match
                    </mat-error>
                    <mat-form-field  *ngIf="company">
-          
+
                     <input id="companyAddress" matInput placeholder="Company address" formControlName="address" name="companyAddress">
-                  
+
                   </mat-form-field>
-                  
-        
+
+
                    <mat-form-field  class="example-full-width" fxFill>
-                    <input id="phoneInput" matInput placeholder="phone" formControlName="phone" type="double"> 
-               
+                    <input id="phoneInput" matInput placeholder="phone" formControlName="phone" type="double">
+
                   </mat-form-field>
-                
+
                       <mat-form-field *ngIf="candidate">
-                    
+
                         <input id="fullNameInput" matInput placeholder="First Name" formControlName="fullName" name="fullName">
-                        <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+                        <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email
                           with the .touched check we only display the hints if the input was touched by the users -->
                         <mat-error *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('required')">
                           fullName is required</mat-error>
-                    
+
                         </mat-form-field>
-            
-        
-                            
+
+
+
                           <mat-form-field  *ngIf="candidate" class="example-full-width"  fxFill>
                             <mat-label id="genderLabel"  >Gender... </mat-label>
                             <mat-select formControlName="gender" onchange="">
@@ -102,78 +102,80 @@
                               <mat-option  id="{{[degree]}}" [value]="degree" *ngFor="let degree of Degree">{{degree}}
                               </mat-option>
                             </mat-select>
-                          </mat-form-field> 
-                                
-          
+                          </mat-form-field>
+
+
                           <mat-form-field *ngIf="candidate" class="example-full-width" matInput placeholder="Your speciality"   fxFill>
                             <input id="fieldInput" matInput placeholder="Field" formControlName="field">
                           </mat-form-field>
-                    
-                    
+
+
                           <mat-form-field  *ngIf="candidate" class="example-full-width">
-                            <input id="intrestInput" matInput placeholder="Add Intrest" #newIntrest 
+                            <input id="intrestInput" matInput placeholder="Add Intrest" #newIntrest
                             (keyup.enter)="addIntrest(newIntrest.value)"
                             (blur)="addIntrest(newIntrest.value); newIntrest.value='' " fxFill formControlName="intrest">
                             <br>
-                            
+
                           </mat-form-field>
                           <ul  id="{{[Intrest]}}" *ngIf="candidate" ><li id="{{'intrestNumber_'+[indexOfelement]}}" *ngFor="let Intrest of Intrests let indexOfelement=index;">{{Intrest}}
-                    
+
                             <mat-icon id="{{'deleteIntrestNumber_' +[indexOfelement]}}" class="example-margin" style=" cursor:pointer;" (click)="deleteIntrest(indexOfelement)">delete_forever</mat-icon>
                           </li></ul>
                             <button mat-stroked-button id="addIntrestBtn" *ngIf="candidate" type="button" (click)="addIntrest(newIntrest.value)"  color="accent"  class="btn-block">Add</button>
-                        
+
                             <mat-form-field  class="example-full-width" fxFill>
                               <mat-label id="cityBtn">City...</mat-label>
                               <mat-select [(value)]="selectedCity" name="city" id="city" formControlName="city">
                                 <mat-option id="{{[city]}}" [value]="city" *ngFor="let city of City" name="city">{{city}}
                                 </mat-option>
                               </mat-select>
-                            </mat-form-field>      
+                            </mat-form-field>
                             <mat-form-field  id="{{[date]}}"  *ngIf="candidate" class="example-full-width"  fxFill>
                               <input id="birthDate" type="date" matInput placeholder="Date of Birth" formControlName="dateOfBirth">
                             </mat-form-field>
 
                           <mat-form-field appearance="fill"  *ngIf="candidate">
-    
+
                               <textarea formControlName="canddescription" id="candidateDescriptionText" class="example-full-width" matInput
                                   cdkTextareaAutosize
                                   placeholder="Add some information about yourself so companies get to know you easier you can add skills or important internships etc.."
                                   #autosize="cdkTextareaAutosize"
                                   cdkAutosizeMinRows="1"
-                                  cdkAutosizeMaxRows="5">  
+                                  cdkAutosizeMaxRows="5">
                               </textarea>
                             </mat-form-field>
-<!-- 
+
                                 <div  *ngIf="candidate">
                                   <h2 id="candidateCVHeader" >You can add A CV </h2>
                                   <button mat-stroked-button color="accent"  class="btn-block">
                                   <label  id="choosepicbtnCandidate" fxFill style=" cursor:pointer;">
-                                  <input #uploadFile id="CV" type='file' style="display: none;" /> 
-                                  Upload A File</label>
+                                  <input #uploadFile id="CV" type='file'  (change)="fileChange($event, 'cv')" style="display: none;" accept=".pdf,.doc,.docx" [formEnctype]="multipart/form-data"/>
+
+                                {{selectedCV ? selectedCV['name'] : 'Upload A File'}}
+                                </label>
                                 </button>
                                </div>
-                                 
+
                                   <div  *ngIf="candidate">
                                     <h2 id="candidatePictureHeader" >You Can Add A Profile Picture </h2>
                                     <button mat-stroked-button color="accent"  class="btn-block">
                                     <label  id="choosepicbtnCandidate" fxFill style=" cursor:pointer;">
-                                    <input #uploadFile id="candidatePicture" type='file' style="display: none;" /> 
-                                    Choose A Picture</label>
+                                    <input #uploadFile id="candidatePicture" type='file'  (change)="fileChange($event, 'img')" style="display: none;" accept=".png, .jpg, .jpeg"  [formEnctype]="multipart/form-data"/>
+                                    {{selectedPic ? selectedPic['name'] : 'Upload A File'}}</label>
                                   </button>
-                                 </div> -->
+                                 </div>
 
                                  <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
-                                  <input formControlName="fax" id="faxInput" matInput placeholder="Fax Number"> 
-                             
-                                </mat-form-field>
-                          
-                                <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
-                                  <input formControlName="tax" id="taxInput" matInput placeholder="Tax Number"> 
-                             
+                                  <input formControlName="fax" id="faxInput" matInput placeholder="Fax Number">
+
                                 </mat-form-field>
 
-                                      
+                                <mat-form-field *ngIf="company" class="example-full-width"  fxFill>
+                                  <input formControlName="tax" id="taxInput" matInput placeholder="Tax Number">
+
+                                </mat-form-field>
+
+
 
             <mat-form-field appearance="fill" *ngIf="company">
     <textarea formControlName="compdescription" id="companyDescriptionText" class="example-full-width" matInput
@@ -181,22 +183,22 @@
             placeholder=" Add some information About Your Company"
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"> 
+            cdkAutosizeMaxRows="5">
           </textarea>
   </mat-form-field>
- 
+
 
 </form>
-  
- 
+
+
   <br>
   <div >
     <button  mat-raised-button fxFill id="RegisterSubmit" class="submitbtn" (click)="submit()">Register</button>
-  
+
   </div>
 
-  
-  
+
+
 </mat-card>
 </div>
 

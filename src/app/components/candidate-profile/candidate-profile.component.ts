@@ -107,7 +107,7 @@ update(){
 
   this.http.put<any>('http://10.10.32.82:8080/Person/update', this.para,  {headers})
   .subscribe(data => {
-    window.alert(data)
+    window.alert("done")
 
   });
 
@@ -197,6 +197,7 @@ else{
 
       }
       else{
+        this.obj=sessionStorage.getItem('userInfo')
 
         this.router.navigate(['jobs'], { state: {userInfo:res} });
       }
