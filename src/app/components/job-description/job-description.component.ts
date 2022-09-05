@@ -30,6 +30,7 @@ export class JobDescriptionComponent implements OnInit {
   param:{
     id;
     jobID;
+    type;
   };
   id;
 status;
@@ -43,15 +44,20 @@ user:Iprofile
       this.id = this.router.getCurrentNavigation().extras.state.id
       this.user = JSON.parse(sessionStorage.getItem('userInfo'));
       this.type = this.user.type;
+      // if (this.type== null){
+      //   this.type="company"
+      // }
 
 
 
 
    this.param={
     id:this.id,
-    jobID: this.job_id
+    jobID: this.job_id,
+    type: this.type
    }
    this.param=JSON.parse(JSON.stringify(this.param))
+   console.log("<honololoooo>",this.param)
 
 
    }
@@ -169,18 +175,18 @@ user:Iprofile
     }
     addJob(){
 
-    
+
       this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
-  
+
     }
      JobList(){
       this.router.navigate(['AppliedJobs'], {state : {id:this.user.personID}});
-  
+
      }
      account(){
 
       this.router.navigate(['CandidateProfile'],{ state: {example :this.user, loginF: this.loginF } });
-   
+
      }
      personAccount(personID){
       this.router.navigate(['CandidateProfileForCompany'],{state: {id:personID}});

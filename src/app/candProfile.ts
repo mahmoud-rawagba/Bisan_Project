@@ -12,6 +12,7 @@ export interface Iprofile{
     intrests: string;
     picPath:string;
     type:string;
+    cvPath:string;
 
 
 
@@ -29,5 +30,5 @@ cities:{
     companyTax: number;
     address: string;
     compdescription:string;
-    
+
 }

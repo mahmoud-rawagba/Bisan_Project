@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
- 
+
    obj = {};
    para;
    person={};
@@ -49,7 +49,8 @@ public x: any;
         gender: res.gender,
         city:  res.city.cityName,
         studyDegree:  res.studyDegree,
-        personField: res.personField
+        personField: res.personField,
+        personID: res.personID
       }
      // this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),

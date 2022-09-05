@@ -2,5 +2,7 @@
  .file-input {
     display: none;
   }
+  mat-button-toggle-group ::before{
+    background-color: red;
+  }
 
- 
