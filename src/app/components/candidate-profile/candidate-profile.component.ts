@@ -23,6 +23,7 @@ Degree: any = ['High School','deploma','Bachelor','Master','Phd','None'];
 City: any =['Ramallah','Jerusalem','Jericho','Hebron','Betlahem','Nablus','Jenin','Tulkarem','Salfeit','Gaza','Khanyonis','der_albalah','Rafah'];
 type;
 user:Iprofile
+  picPath: any;
 
 
 
@@ -44,7 +45,8 @@ user:Iprofile
 
       }
       else{
-        this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.companyEmail
+        this.profileDetails.picPath=this.router.getCurrentNavigation().extras.state.example.picPath
+         this.profileDetails.email=this.router.getCurrentNavigation().extras.state.example.companyEmail
         this.profileDetails.userName=this.router.getCurrentNavigation().extras.state.example.companyUserName
         this.profileDetails.company_id= this.router.getCurrentNavigation().extras.state.example.company_id
         this.profileDetails.address=this.router.getCurrentNavigation().extras.state.example.address
@@ -69,6 +71,16 @@ user:Iprofile
 
 
   ngOnInit(): void {
+    this.http.get('http://10.10.32.82:8080/Person/'+this.profileDetails.personID+'/getImage',{
+      observe: 'response'
+     })
+     .toPromise()
+    .then(response => {
+
+      this.picPath= response.body
+
+
+    })
     this.http.get('http://10.10.32.82:8080/Person/alldata').subscribe(res => {
      })
   }
@@ -86,6 +98,7 @@ update(){
   if (this.type){
 
   console.log(   "candidaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate" ,this.profileDetails);
+  this.profileDetails.picPath=this.updatedform.get('picPath').value
   this.profileDetails.fullName=this.updatedform.get('fullName').value
   this.profileDetails.city=this.updatedform.get('city').value
   this.profileDetails.field=this.updatedform.get('field').value
@@ -208,7 +221,7 @@ else{
   }
   addJob(){
 
-    
+
     this.router.navigate(['AddJob'], {state : {example:this.user.company_id}});
 
   }
