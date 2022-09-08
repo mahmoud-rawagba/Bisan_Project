@@ -28,8 +28,8 @@ public x: any;
   form: FormGroup = new FormGroup({});
   loginForm = new FormGroup({
 
-    userName: new FormControl('tartir', [Validators.required]),
-    myPassword: new FormControl('123', [Validators.required]),
+    userName: new FormControl('', [Validators.required]),
+    myPassword: new FormControl('', [Validators.required]),
   })
   submit(){
     console.log(this.loginForm.value)
@@ -49,7 +49,8 @@ public x: any;
         gender: res.gender,
         city:  res.city.cityName,
         studyDegree:  res.studyDegree,
-        personField: res.personField
+        personField: res.personField,
+        personID: res.personID
       }
      // this.person =   res
       this.para=JSON.parse(JSON.stringify(this.obj)),

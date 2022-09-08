@@ -95,10 +95,11 @@ export class RegisterComponent implements OnInit {
 
   public fields: Object = { text: 'text', iconCss: 'icon' };
 
-  addIntrest(newIntrest: string) {
+addIntrest(newIntrest: string) {
     if (newIntrest) {
       this.Intrests.push(newIntrest);
     }
+    return this.Intrests;
   }
 
   registerForm = new FormGroup(

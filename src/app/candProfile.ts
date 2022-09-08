@@ -12,6 +12,17 @@ export interface Iprofile{
     intrests: string;
     picPath:string;
     type:string;
+      
+
+      description: string;
+
+      interests:string;
+      personEmail: string;
+      personField: string;
+
+      
+
+
 
 
 

@@ -129,7 +129,6 @@ if(this.type == "person"){
   filter(){
     this.search=true
     this.filterOn=true
-
     this.param.city = this.filterForm.get('city').value
     this.param.gender = this.filterForm.get('gender').value
     this.param.studyDegree = this.filterForm.get('studyDegree').value

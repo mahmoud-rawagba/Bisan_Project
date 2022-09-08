@@ -30,6 +30,7 @@ export class JobDescriptionComponent implements OnInit {
   param:{
     id;
     jobID;
+    type;
   };
   id;
 status;
@@ -49,7 +50,8 @@ user:Iprofile
 
    this.param={
     id:this.id,
-    jobID: this.job_id
+    jobID: this.job_id,
+    type:this.type
    }
    this.param=JSON.parse(JSON.stringify(this.param))
 

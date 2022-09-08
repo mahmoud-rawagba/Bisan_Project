@@ -148,7 +148,7 @@
             <mat-card-title fxfill  >
               <h1> Applied Candidates</h1>
              <div  fxfill *ngFor="let app of apps" >
-          
+          <button class="noButton" (click)="personAccount(app.personID)">
             
               <label style=" cursor:pointer;" style="font-size: 20px;"> Candidate:{{app.personName}} </label>
               <br style=" cursor:pointer;">
@@ -165,11 +165,13 @@
                 <button type="submit" class="btn btn-danger {{app.applicationID}}reject" (click)="response(0,app.applicationID)">Reject</button>  
 
               </div>
-
               <div *ngIf="app.status">
-                <label  style="font-size: 20px;color: #790100;"> {{app.status}} </label>
+                <label class="labelStatus"> {{app.status}} </label>
               </div>
-              <button (click)="personAccount(app.personID)">see account</button>
+            </button>
+
+
+            
 
              </div>
             </mat-card-title>

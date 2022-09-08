@@ -9,7 +9,7 @@ import { JobDescriptionComponent} from './components/job-description/job-descrip
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 import {AppliedJobsComponent} from './components/applied-jobs/applied-jobs.component'
-// import {CandidateProfileForCompanyComponent} from './components/candidate-profile-for-company/candidate-profile-for-company.component'
+import {CandidateProfileForCompanyComponent} from './components/candidate-profile-for-company/candidate-profile-for-company.component'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'CompanyProfile', component:CompanyProfileComponent },
   {path: 'AddJob', component:AddJobComponent},
   {path: 'AppliedJobs', component:AppliedJobsComponent},
-  // {path: 'CandidateProfileForCompany', component:CandidateProfileForCompanyComponent}
+  {path: 'CandidateProfileForCompany', component:CandidateProfileForCompanyComponent}
 
 
 ];
