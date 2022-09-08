@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
- 
+
    obj = {};
    para;
    person={};

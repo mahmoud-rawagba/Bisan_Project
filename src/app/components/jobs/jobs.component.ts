@@ -120,6 +120,7 @@ if(this.type == "person"){
 
   form: FormGroup = new FormGroup({});
   filterForm = new FormGroup({
+    personID: new FormControl(),
     city: new FormControl(''),
     studyDegree: new FormControl(''),
     personField: new FormControl(''),
@@ -129,10 +130,12 @@ if(this.type == "person"){
   filter(){
     this.search=true
     this.filterOn=true
+    this.param.personID= this.user.personID
     this.param.city = this.filterForm.get('city').value
     this.param.gender = this.filterForm.get('gender').value
     this.param.studyDegree = this.filterForm.get('studyDegree').value
     this.param.personField= this.filterForm.get('personField').value
+    console.log(this.param)
     //this.param=JSON.parse(JSON.stringify(this.filterF))
 
 
